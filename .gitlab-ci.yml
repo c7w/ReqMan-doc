@@ -4,7 +4,7 @@ stages:
   - build
   - deploy
 
-build-master:
+build: # Would fail if wrong site configuration
   stage: build
   script:
     - export BUILD_IMAGE_NAME=$CI_REGISTRY_IMAGE
@@ -12,8 +12,6 @@ build-master:
     - export BUILD_IMAGE_USERNAME=$CI_REGISTRY_USER
     - export BUILD_IMAGE_PASSWORD=$CI_REGISTRY_PASSWORD
     - deployer build
-  only:
-    - master
 
 deploy:
   stage: deploy
