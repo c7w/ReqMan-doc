@@ -11,7 +11,11 @@
     如果你发现请求的状态码为负数，请参见[权限约定](index.md##权限约定)
 ## 用户注册 
 ### 注册接口
-[POST] `/ums/register/`
+
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/register/</span>
+</div>
+
 
 ??? example "示例"
     === "请求"
@@ -45,6 +49,41 @@
 |1|失败，原因包括：用户已经登录，姓名不合法/已存在，邮箱不合法/已存在|
 |2|失败，因为写了邀请码，但邀请码无效|
 
+### 检查用户名是否可用
+[POST] `/ums/check_username_available/`
+
+!!! example "[POST] `/ums/check_username_available/`"
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "name": "lambda_x",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+无
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|name|str|要检查占用的用户名|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|用户名可用|
+|1|用户名被占用|
+
+
+### 检查主邮箱是否可用
 
 ## 登录登出
 
@@ -81,7 +120,7 @@
         }
         ```
 
-#### 请求
+#### 请求参数
 
 |参数|类型|说明|
 |-|-|-|

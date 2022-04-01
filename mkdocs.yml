@@ -39,6 +39,9 @@ theme:
 extra_javascript:
   - 'https://cdn.jsdelivr.net/npm/mathjax@2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
 
+extra_css:
+  - style/extension.css
+
 plugins:
   - search
   - git-revision-date-localized:
