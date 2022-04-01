@@ -31,7 +31,7 @@
 |avatar |Text| |用户头像，base64编码保存|
 |disabled |Boolean ||是否删除，默认为False|
 |createdAt |Float| |用户创建时间，默认创建当时的时间戳|
-|project |ManyToMany(Project)| |用户所在的项目，通过UserProjectAssociation模型实现|
+|project |ManyToMany([Project](#project))| |用户所在的项目，通过UserProjectAssociation模型实现|
 |email_verified |Boolean ||email是否已经验证，默认为False|
 
 
@@ -39,7 +39,7 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |sessionId |Char|索引 |会话哈希值|
-|user |ForeignKey(User)||会话对应的用户|
+|user |ForeignKey([User](#user))||会话对应的用户|
 |expireAt |DateTime| |会话过期时间，默认48小时后过期|
 
 
@@ -48,8 +48,8 @@
 
 |字段|类型|属性|说明|
 |-|-|-|-|
-|user |ForeignKey(User)|索引|对应用户|
-|project |ForeignKey(Project)|索引|对应项目|
+|user |ForeignKey([User](#user))|索引|对应用户|
+|project |ForeignKey([Project](#project))|索引|对应项目|
 |role |Text ||用户在项目中的角色|
 
 其中，联合索引 (user, project)
@@ -58,7 +58,7 @@
 ## 项目-邀请码关联模型 ProjectInvitationAssociation
 |字段|类型|属性|说明|
 |-|-|-|-|
-|project |ForeignKey(Project)|索引|对应项目|
+|project |ForeignKey([Project](#project))|索引|对应项目|
 |invitation |Char|索引 |项目对应的邀请码，最长64字符|
 |role |Text ||获得邀请码后用户成为的角色|
 
@@ -68,7 +68,7 @@
 |-|-|-|-|
 |hash1 |Char |索引， 唯一|邮件中发送的哈希值，最长100字符|
 |hash2 |Char |索引， 唯一|修改密码会话的哈希值，最长100字符|
-|user |ForeignKey(User)||修改密码的用户|
+|user |ForeignKey([User](#user))||修改密码的用户|
 |email |Text ||用于修改密码的邮箱|
 |createdAt |Float ||申请修改密码的时间，默认为创建时的时间戳|
 |beginAt |Float| |首次点击链接的时间，默认为-1|
@@ -79,7 +79,7 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |hash |Char |索引， 唯一|邮件中发送的哈希值，最长100字符|
-|user |ForeignKey(User)||验证邮箱的用户|
+|user |ForeignKey([User](#user))||验证邮箱的用户|
 |email |Text ||待验证的邮箱|
 |createdAt |Float ||申请验证邮箱的时间，默认为创建时的时间戳|
 |is_major |Boolean ||验证的是否是主邮箱|
@@ -88,7 +88,6 @@
 ## 用户-副邮箱关联模型 UserMinorEmailAssociation
 |字段|类型|属性|说明|
 |-|-|-|-|
-|user |ForeignKey(User)|索引|对应用户|
+|user |ForeignKey([User](#user))|索引|对应用户|
 |email |Char |索引|最长255字符|
 |verified |Boolean ||该邮箱是否已经验证，默认为False|
-
