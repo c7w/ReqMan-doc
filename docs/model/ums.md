@@ -4,7 +4,7 @@
     }
 </style>
 
-# UMS 数据库模型 
+# UMS 模型 
 
 
 ## 项目模型 Project
