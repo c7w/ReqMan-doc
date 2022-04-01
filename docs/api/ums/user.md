@@ -16,6 +16,7 @@
 - <span>**[ POST ]** &nbsp;&nbsp; /ums/register/</span>
 </div>
 
+用于注册新用户。
 
 ??? example "示例"
     === "请求"
@@ -50,9 +51,11 @@
 |2|失败，因为写了邀请码，但邀请码无效|
 
 ### 检查用户名是否可用
-[POST] `/ums/check_username_available/`
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/check_username_available/</span>
+</div>
 
-!!! example "[POST] `/ums/check_username_available/`"
+用于注册过程中，检查用户名是否可用。
 
 ??? example "示例"
     === "请求"
@@ -83,17 +86,187 @@
 |1|用户名被占用|
 
 
-### 检查主邮箱是否可用
+### 检查邮箱是否可用
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/check_email_available/</span>
+</div>
+
+用于注册过程中，检查邮箱是否可用。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "email": "joshua@btlmd.com",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+无
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|email|str|要检查占用的邮箱|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|邮箱可用|
+|1|邮箱被占用|
 
 ## 登录登出
 
 ### 用户登录
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/login/</span>
+</div>
+
+用于用户登录。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "identity": "lambda_x",
+            "password": "99b1ff8f11781541f7f89f9bd41c4a17"
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+未登录用户 
+
+<!-- 将内容改为permission decorator实现？ -->
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|identity|str|用户邮箱或用户名|
+|password|str|哈希后的用户密码|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|登录成功|
+|1|已经登录|
+|2|用户身份不存在|
+|3|身份存在，但密码错误|
+
+!!! info "为什么允许用户知道自己密码错误"
+    有人认为允许用户知道自己密码错误/身份不存在会增加安全隐患。确实。但考虑到我们注册接口会检查用户名是否重复，而Secoder的代理使我们无法获知用户IP从而实施流量控制，因此注册接口如果想要稍微友好一些，则势必暴露邮箱和用户名的使用情况。
+
+    因此，允许用户知道自己密码错误/身份不存在不会增加**额外**的安全隐患。
 
 ### 用户登出
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/logout/</span>
+</div>
+
+用户用户登出。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+已登录用户
+#### 请求参数
+无
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|登出成功|
+
 
 ## 用户信息
 
 ### 获取用户信息
+<div class="grid cards" markdown>
+- <span>**[ GET ]** &nbsp;&nbsp; /ums/user/</span>
+</div>
+用户获取用户信息，包括
+- UMS中的账户信息，如用户名，邮箱，头像等等
+- RMS中的任务信息，如计划表。
+
+!!! danger
+    此接口尚未完全实现
+
+??? example "示例"
+    === "请求"
+        ```bash 
+        curl https://example.com/ums/user/?sessionId=Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "schedule": {
+                    "done": [],
+                    "wip": [],
+                    "todo": []
+                },
+                "user": {
+                    "id": 1,
+                    "name": "c7w",
+                    "email": "admin@cc7w.cf",
+                    "avatar": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ ... J7E2Ko9o4Ems3p//2Q==",
+                    "createdAt": 1648050909.599101,
+                    "email_verified": false
+                },
+                "projects": [
+                    {
+                        "id": 1,
+                        "title": "雷克曼",
+                        "description": "ReqMan",
+                        "createdAt": 1648278867.751802,
+                        "avatar": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ ... J7E2Ko9o4Ems3p//2Q==",
+                        "role": "supermaster"
+                    }
+                ]
+            }
+        }
+        ```
+
+#### 请求权限 
+已登录用户
+#### 请求参数
+无
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|获取用户信息成功|
+
+#### 响应数据
+!!! todo 
+    先意思一下，等schedule属性实现了一块儿写。
+!!! danger
+    中间某个版本实现时误将avatar放到了data的下面而不是user的下面，后续考虑移除。（示例响应已经移除，但目前dev分支在两个地方都加了用户avatar）
+
+
 
 
 
@@ -420,8 +593,3 @@ sequenceDiagram
     
 ## 用户信息配置
 
-### 通过邀请码加入项目
-
-### 上次头像
-
-### 修改密码
