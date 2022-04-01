@@ -1,3 +1,9 @@
+<style>
+    .md-nav--secondary>ul>li>nav>ul>li>nav {
+        display: none;
+    }
+</style>
+
 # 项目管理接口
 
 ## 提示和说明
@@ -179,3 +185,166 @@
 |1|修改失败，原因是(用户, 项目)无效或成员属性无效|
 
 
+### 获得邀请码
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/get_invitation/</span>
+</div>
+
+用于项目管理员获取邀请码。如果已经存在邀请码则返回邀请码，如果不存在邀请码则创建一个新的邀请码。用邀请码加入项目后的默认属性配置于`DEFAULT_INVITED_ROLE`。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0，
+            "data": {
+                "invitation": "AU4YNT7Q"
+            }
+        }
+        ```
+
+#### 请求权限 
+项目管理员
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|获取邀请码成功|
+
+#### 响应数据
+|字段|类型|说明|
+|-|-|-|
+|invitation|str|项目当前的邀请码|
+
+
+
+### 刷新邀请码
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/refresh_invitation/</span>
+</div>
+
+用于项目管理员更新邀请码。如果已经存在邀请码，那么已经存在的邀请码将失效，如果不存在邀请码则创建一个新的邀请码。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0，
+            "data": {
+                "invitation": "AU4YNT7Q"
+            }
+        }
+        ```
+
+#### 请求权限 
+项目管理员
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|获取邀请码成功|
+
+#### 响应数据
+|字段|类型|说明|
+|-|-|-|
+|invitation|str|项目当前的邀请码|
+
+
+## 项目信息配置
+
+### 上传项目图标
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/upload_project_avatar/</span>
+</div>
+
+用于项目管理员上传项目图标。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "avatar": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ ... J7E2Ko9o4Ems3p//2Q=="
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+项目管理员
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|avatar|str|base64编码，表示项目图标|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|上传成功|
+
+### 修改项目信息
+
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/modify_project/</span>
+</div>
+
+用于项目管理员修改项目信息
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "title": "雷克曼",
+            "description": "ReqMan"
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+项目管理员
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|title|str|项目名称|
+|description|str|项目描述|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|修改成功
