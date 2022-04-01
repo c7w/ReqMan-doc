@@ -9,8 +9,8 @@ nav:
     - api/index.md
     - UMS模块:
       - api/ums/index.md
-      - 用户操作: api/ums/user.md
-      - 项目管理: api/ums/project.md
+      - 用户账户接口: api/ums/user.md
+      - 项目管理接口: api/ums/project.md
     - RMS模块:
       - api/rms/index.md
 

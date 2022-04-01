@@ -274,8 +274,9 @@
 ## 通过邮箱重置密码
 如果用户忘记密码，可以通过已经验证的邮箱来重置密码。
 ### 重置密码请求接口
-
- [POST] `/ums/email_modify_password_request/`
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/email_modify_password_request/</span>
+</div>
 
 此接口用于请求发送一封用于修改密码的邮件。
 
@@ -312,8 +313,10 @@
 2,3,4 尚未实现
 
 ### 重置密码回调接口
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/email_modify_password_request/</span>
+</div>
 
-[POST] `/ums/email_modify_password_request/`
 
 此接口用于利用发送给用户的哈希值来重置密码，包括两个阶段。
 ``` mermaid
@@ -406,8 +409,10 @@ sequenceDiagram
 
 ## 邮箱配置与验证
 ### 邮箱操作请求接口
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/email_request/</span>
+</div>
 
-[POST] `/ums/email_request/`
 
 此接口用于请求添加/修改/删除/验证副邮箱，或修改/验证主邮箱。对主邮箱的添加/删除操作将会抛出`Param Err`，导致返回 `-1` 。
 !!! info "状态码好多？"
@@ -560,6 +565,9 @@ sequenceDiagram
 |6|添加失败，因为email所表示的副邮箱是非法的|
 
 ### 邮箱验证回调接口
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/email_verify_callback/</span>
+</div>
 
 ??? example "示例"
     === "请求"
@@ -663,7 +671,7 @@ sequenceDiagram
 
 ### 修改密码
 <div class="grid cards" markdown>
-- <span>**[ POST ]** &nbsp;&nbsp; /ums/check_username_available/</span>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/modify_password/</span>
 </div>
 
 用于在已知密码的情况下修改用户密码。

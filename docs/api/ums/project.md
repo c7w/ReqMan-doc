@@ -328,6 +328,66 @@
 |invitation|str|项目当前的邀请码|
 
 
+### 检查用户是否存在
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/user_exist/</span>
+</div>
+
+用于邀请用户加入项目时的实时反馈。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "indentity": {
+                "type": "email",
+                "key": "admin@cc7w.cf"
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "exist": true,
+                "user": {
+                    "id": 1,
+                    "name": "c7w",
+                    "email": "admin@cc7w.cf",
+                    "avatar": "",
+                    "createdAt": 1648050909.599101,
+                    "email_verified": false
+                },
+                "projects": [
+                    {
+                        "id": 1,
+                        "title": "雷克曼",
+                        "description": "ReqMan",
+                        "createdAt": 1648278867.751802,
+                        "avatar": "",
+                        "role": "supermaster"
+                    }
+                ]
+            }
+        }
+        ```
+
+#### 请求权限 
+项目管理员，系统工程师
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|identity.type|str|查询依据:"id", "name", "email"|
+|identity.key|str/int|查询内容，如查询email就传入待查询的email|
+
+#### 响应状态
+!!! danger "This interface is too powerful"
+    前端的伙计们看一下需要示例里的哪些字段，其余的我就移除了。
+
 ## 项目信息配置
 
 ### 上传项目图标
