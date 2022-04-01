@@ -593,3 +593,105 @@ sequenceDiagram
     
 ## 用户信息配置
 
+### 通过邀请码加入项目
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/user_join_project_invitation/</span>
+</div>
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "invitation": "8FNE6SL1",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+已登录用户
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|invitation|str|项目的邀请码|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|加入成功|
+|1|已经在项目中|
+|2|邀请码无效|
+
+### 修改头像
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/upload_user_avatar/</span>
+</div>
+用于用户上传头像。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "avatar": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ ... J7E2Ko9o4Ems3p//2Q==",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+已登录用户
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|avatar|str|base64编码，表示用户的头像|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|上传成功|
+
+### 修改密码
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/check_username_available/</span>
+</div>
+
+用于在已知密码的情况下修改用户密码。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "name": "lambda_x",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+已登录用户
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|prev|str|旧密码哈希值|
+|curr|str|新密码哈希值|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|修改成功|
+|2|修改失败，原因是旧密码不正确。|
