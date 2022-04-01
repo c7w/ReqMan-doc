@@ -14,7 +14,7 @@
     - sys：系统工程师
     - member：项目成员
 
-## 创建项目
+## 基本操作
 
 ### 创建项目
 <div class="grid cards" markdown>
@@ -54,8 +54,64 @@
 |0|用户名可用|
 |1|创建失败，原因是项目名太长|
 
+### 显示项目信息
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/project/</span>
+</div>
 
+用于项目成员查看项目信息。
 
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "project": {
+                    "id": 1,
+                    "title": "雷克曼",
+                    "description": "ReqMan",
+                    "createdAt": 1648278867.751802,
+                    "avatar": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ ... J7E2Ko9o4Ems3p//2Q=="
+                },
+                "users": [
+                    {
+                        "id": 1,
+                        "name": "c7w",
+                        "email": "admin@cc7w.cf",
+                        "avatar": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ ... J7E2Ko9o4Ems3p//2Q==",
+                        "createdAt": 1648050909.599101,
+                        "email_verified": false,
+                        "role": "supermaster"
+                    }
+                ]
+            }
+        }
+        ```
+
+#### 请求权限 
+项目任意成员
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|title|str|项目名称|
+|description|str|项目描述|
+|title|str|项目头像（可选）|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|获取项目信息成功|
+
+!!! bug
+    中间某个版本实现时误将avatar放到了data的下面而不是project的下面，后续考虑移除。（示例响应已经移除，但目前dev分支在两个地方都加了项目avatar）
 
 ## 成员管理
 
