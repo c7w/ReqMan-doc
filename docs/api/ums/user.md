@@ -8,10 +8,16 @@
 # 用户账户接口
 !!! warning 
     不加特殊说明，所有请求都需要有 `sessionId` 字段。
-    如果你发现请求的状态码为负数，请参见[权限约定](index.md##权限约定)
+    如果你发现请求的状态码为负数，请参见[权限约定](index.md#_1)
+
 ## 用户注册 
 ### 注册接口
-[POST] `/ums/register/`
+
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/register/</span>
+</div>
+
+用于注册新用户。
 
 ??? example "示例"
     === "请求"
@@ -45,12 +51,232 @@
 |1|失败，原因包括：用户已经登录，姓名不合法/已存在，邮箱不合法/已存在|
 |2|失败，因为写了邀请码，但邀请码无效|
 
+### 检查用户名是否可用
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/check_username_available/</span>
+</div>
+
+用于注册过程中，检查用户名是否可用。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "name": "lambda_x",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+无
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|name|str|要检查占用的用户名|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|用户名可用|
+|1|用户名被占用|
+
+
+### 检查邮箱是否可用
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/check_email_available/</span>
+</div>
+
+用于注册过程中，检查邮箱是否可用。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "email": "joshua@btlmd.com",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+无
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|email|str|要检查占用的邮箱|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|邮箱可用|
+|1|邮箱被占用|
+
+## 登录登出
+
+### 用户登录
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/login/</span>
+</div>
+
+用于用户登录。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "identity": "lambda_x",
+            "password": "99b1ff8f11781541f7f89f9bd41c4a17"
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+未登录用户 
+
+<!-- 将内容改为permission decorator实现？ -->
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|identity|str|用户邮箱或用户名|
+|password|str|哈希后的用户密码|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|登录成功|
+|1|已经登录|
+|2|用户身份不存在|
+|3|身份存在，但密码错误|
+
+!!! info "为什么允许用户知道自己密码错误"
+    有人认为允许用户知道自己密码错误/身份不存在会增加安全隐患。确实。但考虑到我们注册接口会检查用户名是否重复，而Secoder的代理使我们无法获知用户IP从而实施流量控制，因此注册接口如果想要稍微友好一些，则势必暴露邮箱和用户名的使用情况。
+
+    因此，允许用户知道自己密码错误/身份不存在不会增加**额外**的安全隐患。
+
+### 用户登出
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/logout/</span>
+</div>
+
+用户用户登出。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+已登录用户
+#### 请求参数
+无
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|登出成功|
+
+
+## 用户信息
+
+### 获取用户信息
+<div class="grid cards" markdown>
+- <span>**[ GET ]** &nbsp;&nbsp; /ums/user/</span>
+</div>
+用户获取用户信息，包括
+- UMS中的账户信息，如用户名，邮箱，头像等等
+- RMS中的任务信息，如计划表。
+
+!!! todo
+    此接口尚未完全实现
+
+??? example "示例"
+    === "请求"
+        ```bash 
+        curl https://example.com/ums/user/?sessionId=Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "schedule": {
+                    "done": [],
+                    "wip": [],
+                    "todo": []
+                },
+                "user": {
+                    "id": 1,
+                    "name": "c7w",
+                    "email": "admin@cc7w.cf",
+                    "avatar": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ ... J7E2Ko9o4Ems3p//2Q==",
+                    "createdAt": 1648050909.599101,
+                    "email_verified": false
+                },
+                "projects": [
+                    {
+                        "id": 1,
+                        "title": "雷克曼",
+                        "description": "ReqMan",
+                        "createdAt": 1648278867.751802,
+                        "avatar": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ ... J7E2Ko9o4Ems3p//2Q==",
+                        "role": "supermaster"
+                    }
+                ]
+            }
+        }
+        ```
+
+#### 请求权限 
+已登录用户
+#### 请求参数
+无
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|获取用户信息成功|
+
+#### 响应数据
+!!! todo 
+    先意思一下，等schedule属性实现了一块儿写。
+!!! bug
+    中间某个版本实现时误将avatar放到了data的下面而不是user的下面，后续考虑移除。（示例响应已经移除，但目前dev分支在两个地方都加了用户avatar）
+
+
+
+
 
 ## 通过邮箱重置密码
 如果用户忘记密码，可以通过已经验证的邮箱来重置密码。
 ### 重置密码请求接口
-
- [POST] `/ums/email_modify_password_request/`
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/email_modify_password_request/</span>
+</div>
 
 此接口用于请求发送一封用于修改密码的邮件。
 
@@ -69,7 +295,7 @@
         }
         ```
 
-#### 请求
+#### 请求参数
 
 |参数|类型|说明|
 |-|-|-|
@@ -87,8 +313,10 @@
 2,3,4 尚未实现
 
 ### 重置密码回调接口
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/email_modify_password_request/</span>
+</div>
 
-[POST] `/ums/email_modify_password_request/`
 
 此接口用于利用发送给用户的哈希值来重置密码，包括两个阶段。
 ``` mermaid
@@ -181,8 +409,10 @@ sequenceDiagram
 
 ## 邮箱配置与验证
 ### 邮箱操作请求接口
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/email_request/</span>
+</div>
 
-[POST] `/ums/email_request/`
 
 此接口用于请求添加/修改/删除/验证副邮箱，或修改/验证主邮箱。对主邮箱的添加/删除操作将会抛出`Param Err`，导致返回 `-1` 。
 !!! info "状态码好多？"
@@ -335,6 +565,9 @@ sequenceDiagram
 |6|添加失败，因为email所表示的副邮箱是非法的|
 
 ### 邮箱验证回调接口
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/email_verify_callback/</span>
+</div>
 
 ??? example "示例"
     === "请求"
@@ -367,3 +600,107 @@ sequenceDiagram
 !!! info "为什么hash值可能和数据库冲突"
     例如，用户在该邮箱尚未验证前把邮箱给删除了。
     
+## 用户信息配置
+
+### 通过邀请码加入项目
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/user_join_project_invitation/</span>
+</div>
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "invitation": "8FNE6SL1",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+已登录用户
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|invitation|str|项目的邀请码|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|加入成功|
+|1|已经在项目中|
+|2|邀请码无效|
+
+### 修改头像
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/upload_user_avatar/</span>
+</div>
+用于用户上传头像。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "avatar": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ ... J7E2Ko9o4Ems3p//2Q==",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+已登录用户
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|avatar|str|base64编码，表示用户的头像|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|上传成功|
+
+### 修改密码
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/modify_password/</span>
+</div>
+
+用于在已知密码的情况下修改用户密码。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "name": "lambda_x",
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+已登录用户
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|prev|str|旧密码哈希值|
+|curr|str|新密码哈希值|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|修改成功|
+|2|修改失败，原因是旧密码不正确。|

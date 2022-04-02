@@ -9,8 +9,8 @@ nav:
     - api/index.md
     - UMS模块:
       - api/ums/index.md
-      - 用户操作: api/ums/user.md
-      - 项目管理: api/ums/project.md
+      - 用户账户接口: api/ums/user.md
+      - 项目管理接口: api/ums/project.md
     - RMS模块:
       - api/rms/index.md
   - 模型文档:
@@ -42,6 +42,9 @@ theme:
 
 extra_javascript:
   - 'https://cdn.jsdelivr.net/npm/mathjax@2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+
+extra_css:
+  - style/extension.css
 
 plugins:
   - search
