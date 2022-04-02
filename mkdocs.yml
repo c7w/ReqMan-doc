@@ -13,6 +13,10 @@ nav:
       - 项目管理: api/ums/project.md
     - RMS模块:
       - api/rms/index.md
+  - 模型文档:
+    - model/index.md
+    - UMS模型: model/ums.md
+    - RMS模型: model/rms.md
 
 # Site Configuration
 # Do not touch it unless you know what you are doing!
