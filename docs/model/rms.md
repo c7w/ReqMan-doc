@@ -11,7 +11,7 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |id|BigAuto|主键|迭代ID|
-|project|ForeignKey([Project](#project))|索引|迭代周期的归属|
+|project|ForeignKey([Project](../ums/#project))|索引|迭代周期的归属|
 |sid|Int|||
 |title |Char||项目名称，最长255字符|
 |begin|Float||迭代的开始时间|
@@ -21,7 +21,9 @@
 
 ## 用户-迭代关联模型 UserIterationAssociation
 
-|user |ForeignKey([User](#user))|索引|对应用户|
+|字段|类型|属性|说明|
+|-|-|-|-|
+|user |ForeignKey([User](../user/#user))|索引|对应的用户|
 |iteration|ForeignKey([Iteration](#iteration))|索引|对应的迭代|
 
 其中，联合索引 (user, iteration)
@@ -34,12 +36,12 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |id |BigAuto |主键|IRID|
-|project|ForeignKey([Project](#project))|索引|  IR的归属|
-|title |Char |索引|IR名称，最长255字符|
-|description |Text ||IR描述|
-|rank|Int||IR 的优先级|
+|project|ForeignKey([Project](../ums/#project))|索引|原始需求的归属|
+|title |Char |索引|原始需求名称，最长255字符|
+|description |Text ||原始需求描述|
+|rank|Int||原始需求的序|
 |disabled |Boolean| |是否删除，默认为False|
-|createdAt |Float| |IR 创建时间，默认创建当时的时间戳|
+|createdAt |Float| |原始需求创建时间，默认创建当时的时间戳|
 |createBy|ForeignKey([User](#user))||创建的用户|
 
 其中，联合索引(title,project)
@@ -49,16 +51,16 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |id |BigAuto |主键|IRID|
-|project|ForeignKey([Project](#project))|索引|  SR的归属|
-|title |Char |索引|SR名称，最长255字符|
-|description |Text ||SR描述|
-|priority|Int ||SR 的优先级|
-|rank|Int||SR 的优先级|
-|IR|多对多关系||关联的IR|
-|state|enum (TODO,WIP,Reviewing,Done)||SR 的状态，共有四种|
+|project|ForeignKey([Project](../ums/#project))|索引|功能需求的归属|
+|title |Char |索引|功能需求名称，最长255字符|
+|description |Text ||功能需求描述|
+|priority|Int ||功能需求的优先级|
+|rank|Int||功能需求的优先级|
+|IR|ManyToMany||关联的IR|
+|state|Text|Enum (TODO, WIP, Reviewing, Done)|功能需求的状态，共有四种|
 |disabled |Boolean| |是否删除，默认为False|
-|createdAt |Float| |SR 创建时间，默认创建当时的时间戳|
-|createBy|ForeignKey([User](#user))||创建的用户|
+|createdAt |Float| |功能需求创建时间，默认创建当时的时间戳|
+|createBy|ForeignKey([User](../user/#user))||创建的用户|
 
 其中，联合索引(title,project)
 
@@ -67,6 +69,43 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |IR|ForeignKey([IR](#ir))|索引|对应的 IR|
-|SR|ForeignKey([IR](#ir))|索引|对应的 SR|
+|SR|ForeignKey([SR](#sr))|索引|对应的 SR|
 
-其中，联合索引(ir,sr)
+其中，联合唯一(ir,sr)
+
+## 功能需求-迭代关联模型 SRIteratiionAssociation
+
+|字段|类型|属性|说明|
+|-|-|-|-|
+|SR|ForeignKey([IR](#ir))|索引|对应的 SR|
+|iteration|ForeignKey([Iteration](#iteration))|索引|对应的 Iteration|
+
+其中，联合唯一(ir,sr)
+
+## 服务模型 Service
+
+|字段|类型|属性|说明|
+|-|-|-|-|
+|id |BigAuto |主键|服务的ID|
+|project|ForeignKey([Project](../ums/#project))|索引|服务的归属|
+|title |Char |索引|服务名称，最长255字符|
+|description |Text ||服务描述|
+|rank|Int||服务的序|
+|disabled |Boolean| |是否删除，默认为False|
+|createdAt |Float| |服务创建时间，默认创建当时的时间戳|
+|createBy|ForeignKey([User](../user/#user))||创建的用户|
+
+其中，联合索引(title,project)
+
+## SR 变更记录模型 SR_Changelog
+
+|字段|类型|属性|说明|
+|-|-|-|-|
+|id|BigAuto|主键|记录的 ID|
+|project|ForeignKey([Project](../ums/#project))||  变更记录的归属|
+|SR|ForeignKey([SR](#sr))||归属的 SR|
+|description|Text||变更的描述|
+|formerState|Text|Enum(TODO, WIP, Done, Reviewing)|变更前的状态|
+|formerDescription|Text||变更之前 SR 的描述|
+|changedBy|ForeignKey([User](../user/#user))||更改 SR 的用户|
+|changedAt|Float||修改时间，默认修改当时的时间戳|
