@@ -123,3 +123,117 @@ updateData 内容说明：
             "code": 0
         }
         ```
+
+### 修改 SR
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'sr'|
+|operation|str|'update'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|id|int|需要修改的功能需求的 id|
+|updateData|object|所创建的内容|
+
+updateData 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|title|str|功能需求的标题，最大长度255，可选|
+|description|str|功能需求的描述，可选|
+|priority|int|功能需求的优先级，可选|
+|rank|int|功能需求的序，可选|
+|state|str|功能需求的状态，"TODO" "WIP" "Reviewing" "Done" 四选一，可选|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|成功|
+|其他|失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"sr"，
+            "operation":"update",
+            "data":{
+                 "id":1,
+                 "updateData": {
+                    "title": "aa",
+                    "description": "bb",
+                    "rank": 1325,
+                }
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+### 删除 SR
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'sr'|
+|operation|str|'delete'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|id|int|需要删除的功能需求的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|成功|
+|其他|失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"sr"，
+            "operation":"delete",
+            "data":{
+                 "id":1
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
