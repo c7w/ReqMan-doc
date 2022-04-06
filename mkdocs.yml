@@ -13,6 +13,7 @@ nav:
       - 项目管理接口: api/ums/project.md
     - RMS模块:
       - api/rms/index.md
+      - RMS模块接口: api/rms/rms.md
   - 模型文档:
     - model/index.md
     - UMS模型: model/ums.md
