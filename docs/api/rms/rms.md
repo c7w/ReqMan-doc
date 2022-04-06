@@ -18,3 +18,108 @@
 <div class="grid cards" markdown>
 - <span>**[ POST ]** &nbsp;&nbsp; /rms/project/</span>
 </div>
+
+## 操作 SR
+
+### 查询 SR
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目 id|
+|type|str|'sr'|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+|data|list|项目内的功能需求列表|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|查询成功|
+|其他|查询失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"sr"
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data":[]
+        }
+        ```
+
+### 创建 SR
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'sr'|
+|operation|str|'create'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|updateData|object|所创建的内容|
+
+updateData 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|title|str|功能需求的标题，最大长度255|
+|description|str|功能需求的描述|
+|priority|int|功能需求的优先级|
+|rank|int|功能需求的序|
+|state|str|功能需求的状态，"TODO" "WIP" "Reviewing" "Done" 四选一|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|创建成功|
+|其他|创建失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"sr"，
+            "operation":"create",
+            "data":{
+                 "updateData": {
+                    "title": "a",
+                    "description": "sx",
+                    "rank": 123,
+                    "priority": 2,
+                    "state": "TODO",
+                }
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
