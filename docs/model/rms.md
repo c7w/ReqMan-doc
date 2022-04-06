@@ -12,7 +12,7 @@
 |-|-|-|-|
 |id|BigAuto|主键|迭代ID|
 |project|ForeignKey([Project](../ums/#project))|索引|迭代周期的归属|
-|sid|Int|||
+|sid|Int||迭代的 sid|
 |title |Char||项目名称，最长255字符|
 |begin|Float||迭代的开始时间|
 |end|Float||迭代的完毕时间|

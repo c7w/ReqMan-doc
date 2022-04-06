@@ -140,7 +140,7 @@ data 内容说明：
 |项目|类型|说明|
 |-|-|-|
 |id|int|需要修改的功能需求的 id|
-|updateData|object|所创建的内容|
+|updateData|object|所修改的内容|
 
 updateData 内容说明：
 
@@ -356,7 +356,7 @@ data 内容说明：
 |项目|类型|说明|
 |-|-|-|
 |id|int|需要修改的原始需求的 id|
-|updateData|object|所创建的内容|
+|updateData|object|所修改的内容|
 
 updateData 内容说明：
 
@@ -439,6 +439,222 @@ data 内容说明：
             "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
             "project": 1,
             "type":"ir"，
+            "operation":"delete",
+            "data":{
+                 "id":1
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+## 操作 Iteration
+
+### 查询 Iteration
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目 id|
+|type|str|'iteration'|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+|data|list|项目内的迭代列表|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|查询成功|
+|其他|查询失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"iteration"
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data":[]
+        }
+        ```
+
+### 创建 Iteration
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'iteration'|
+|operation|str|'create'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|updateData|object|所创建的内容|
+
+updateData 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|title|str|迭代的标题，最大长度255|
+|sid|int|迭代的 sid|
+|begin|float|迭代的开始时间|
+|end|float|迭代的结束时间|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|创建成功|
+|其他|创建失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"iteration"，
+            "operation":"create",
+            "data":{
+                 "updateData": {
+                    "title": "w",
+                    "sid": 21,
+                    "begin": 123.0,
+                    "end": 2.0
+                }
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+### 修改 Iteration
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'iteration'|
+|operation|str|'update'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|id|int|需要修改的迭代的 id|
+|updateData|object|所修改的内容|
+
+updateData 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|title|str|迭代的标题，最大长度255，可选|
+|sid|int|迭代的 sid，可选|
+|begin|float|迭代的开始时间，可选|
+|end|float|迭代的结束时间，可选|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|成功|
+|其他|失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"iteration"，
+            "operation":"update",
+            "data":{
+                 "id":1,
+                 "updateData": {
+                    "title": "aaa",
+                    "sid": 12,
+                    "state": "Done",
+                }
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+### 删除 Iteration
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'iteration'|
+|operation|str|'delete'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|id|int|需要删除的迭代的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|成功|
+|其他|失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"iteration"，
             "operation":"delete",
             "data":{
                  "id":1
