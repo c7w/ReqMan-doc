@@ -1,10 +1,20 @@
 image: registry.secoder.net/tool/deployer
 
 stages:
+  - sonarqube
   - build
   - deploy
+  
+sonar:
+  stage: sonarqube
+  image: python:3.8.5
+  script:
+    - SUFFIX=$RANDOM
+    - curl "http://10.0.0.11/sonar-scanner.tar.gz" -s -o "/tmp/sonar-$SUFFIX.tar.gz"
+    - tar -xf "/tmp/sonar-$SUFFIX.tar.gz" -C /opt
+    - /opt/sonar-scanner/bin/sonar-scanner
 
-build: # Would fail if wrong site configuration
+build: # Would fail if wrongly configurated site configuration
   stage: build
   script:
     - export BUILD_IMAGE_NAME=$CI_REGISTRY_IMAGE
