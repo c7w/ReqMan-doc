@@ -80,7 +80,7 @@
 |SR|ForeignKey([IR](#ir))|索引|对应的 SR|
 |iteration|ForeignKey([Iteration](#iteration))|索引|对应的 Iteration|
 
-其中，联合唯一(ir,sr)
+其中，联合唯一(iteration,SR)
 
 ## 服务模型 Service
 
@@ -109,3 +109,38 @@
 |formerDescription|Text||变更之前 SR 的描述|
 |changedBy|ForeignKey([User](../user/#user))||更改 SR 的用户|
 |changedAt|Float||修改时间，默认修改当时的时间戳|
+
+
+## 服务-功能需求关联模型 ServiceSRAssociation
+
+|字段|类型|属性|说明|
+|-|-|-|-|
+|SR|ForeignKey([SR](#sr))||归属的 SR|
+|service|ForeignKey([Service](#service))||归属的  Service|
+
+其中，联合唯一(SR,service)
+
+## 原始需求-迭代关联模型 IRIterationAssociation
+
+|字段|类型|属性|说明|
+|-|-|-|-|
+|IR|ForeignKey([IR](#ir))||归属的 IR|
+|iteration|ForeignKey([Iteration](#iteration))||归属的迭代|
+
+其中，联合唯一(IR,iteration)
+
+## 项目-迭代关联模型 ProjectIterationAssociation
+
+|字段|类型|属性|说明|
+|-|-|-|-|
+|project|ForeignKey([Project](../ums/#project))||归属的项目|
+|iteration|ForeignKey([Iteration](#iteration))||该项目所处于的迭代|
+
+其中，联合唯一(project,iteration)
+
+## 用户-功能需求关联模型 ProjectIterationAssociation
+
+|字段|类型|属性|说明|
+|-|-|-|-|
+|SR|ForeignKey([SR](#sr))||归属的 SR|
+|user|ForeignKey([User](../user/#user))|唯一|主管该 SR 的用户|
