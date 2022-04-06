@@ -880,3 +880,45 @@ data 内容说明：
             "code": 0
         }
         ```
+
+## 操作 SR_Change_Log
+
+### 查询 SR_Change_Log
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目 id|
+|type|str|'SR_changeLog'|
+|SRId|int|查询的 SR 的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+|data|list|所查询的SR的变更记录列表|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|查询成功|
+|其他|查询失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type": "SR_changeLog",
+            "SRId":2,
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data":[]
+        }
+        ```
