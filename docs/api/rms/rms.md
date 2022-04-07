@@ -1153,7 +1153,7 @@ updateData 内容说明：
         {
             "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
             "project": 1,
-            "type":"user-iteration"，
+            "type":"ir-sr"，
             "operation":"create",
             "data":{
                  "updateData": {
@@ -1210,6 +1210,155 @@ data 内容说明：
             "operation":"delete",
             "data":{
                  "IRId":1,
+                 "SRId":2
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+## 操作 sr-iteration 联合关系
+
+### 查询 sr-iteration 联合关系
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目 id|
+|type|str|'sr-iteration'|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+|data|list|项目内的功能需求-迭代关系列表|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|查询成功|
+|其他|查询失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"sr-iteration"
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data":[]
+        }
+
+### 创建 sr-iteration 联合关系
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'sr-iteration'|
+|operation|str|'create'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|updateData|object|所创建的内容|
+
+updateData 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|iterationId|int|建立关系的迭代的 id|
+|SRId|int|建立关系的功能需求的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|创建成功|
+|其他|创建失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"sr-iteration"，
+            "operation":"create",
+            "data":{
+                 "updateData": {
+                    "SRId":1,
+                    "iterationId":2
+                }
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+### 删除 sr-iteration 联合关系
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'sr-iteration'|
+|operation|str|'delete'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|iterationId|int|需要删除的关系所关联的迭代的 id|
+|SRId|int|需要删除的关系所关联的功能需求的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|成功|
+|其他|失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"sr-iteration"，
+            "operation":"delete",
+            "data":{
+                 "iterationId":1,
                  "SRId":2
             }
         }
