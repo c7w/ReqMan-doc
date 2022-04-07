@@ -20,6 +20,7 @@ nav:
     - model/index.md
     - UMS模型: model/ums.md
     - RMS模型: model/rms.md
+    - RDTS模型: model/rdts.md
 
 # Site Configuration
 # Do not touch it unless you know what you are doing!

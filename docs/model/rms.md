@@ -41,7 +41,7 @@
 |rank|Int||原始需求的序|
 |disabled |Boolean| |是否删除，默认为False|
 |createdAt |Float| |原始需求创建时间，默认创建当时的时间戳|
-|createBy|ForeignKey([User](#user))||创建的用户|
+|createBy|ForeignKey([User](../ums/#user))||创建的用户|
 
 其中，联合索引(title,project)
 
