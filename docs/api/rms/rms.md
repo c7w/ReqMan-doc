@@ -1369,3 +1369,231 @@ data 内容说明：
             "code": 0
         }
         ```
+
+## 操作 service-sr 联合关系
+
+### 查询所有 service-sr 联合关系
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目 id|
+|type|str|'service-sr'|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+|data|list|项目内的全部服务-功能需求关系列表|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|查询成功|
+|其他|查询失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"service-sr"
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data":[]
+        }
+
+### 查询 SR 对应的 service
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目 id|
+|type|str|'serviceOfSR'|
+|SRId|int|查询的 SR 的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+|data|list|服务-功能需求关系列表，有且只有一条|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|查询成功|
+|其他|查询失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"serviceOfSR",
+            "SRId":2
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data":[]
+        }
+
+### 查询  service 对应的 SR
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目 id|
+|type|str|'SROfService'|
+|serviceId|int|查询的 service 的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+|data|list|服务-功能需求关系列表|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|查询成功|
+|其他|查询失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"SROfService",
+            "serviceId":2
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data":[]
+        }
+
+### 创建 sr-iteration 联合关系
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'service-sr'|
+|operation|str|'create'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|updateData|object|所创建的内容|
+
+updateData 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|serviceId|int|建立关系的服务的 id|
+|SRId|int|建立关系的功能需求的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|创建成功|
+|其他|创建失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"service-sr"，
+            "operation":"create",
+            "data":{
+                 "updateData": {
+                    "SRId":1,
+                    "serviceId":2
+                }
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+### 删除 service-sr 联合关系
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'service-sr'|
+|operation|str|'delete'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|serviceId|int|需要删除的关系所关联的服务的 id|
+|SRId|int|需要删除的关系所关联的功能需求的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|成功|
+|其他|失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"service-sr"，
+            "operation":"delete",
+            "data":{
+                 "serviceId":1,
+                 "SRId":2
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
