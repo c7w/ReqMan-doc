@@ -5,6 +5,8 @@ site_name: ReqMan Docs | 需求管理跟踪助手帮助文档
 nav:
   - ReqMan:
     - index.md
+  - 需求分析:
+    - analysis.md
   - API 文档:
     - api/index.md
     - UMS模块:
@@ -18,6 +20,7 @@ nav:
     - model/index.md
     - UMS模型: model/ums.md
     - RMS模型: model/rms.md
+    - RDTS模型: model/rdts.md
 
 # Site Configuration
 # Do not touch it unless you know what you are doing!
