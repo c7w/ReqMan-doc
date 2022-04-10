@@ -80,7 +80,7 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |SR|ForeignKey([SR](../rms/#sr))||对应的 SR|
-|commit|ForeignKey([Commit](#提交模型-commit))||对应的提交记录|
+|commit|ForeignKey([Commit](#commit))||对应的提交记录|
 
 其中，联合唯一(SR,commit)
 
@@ -89,7 +89,7 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |SR|ForeignKey([SR](../rms/#sr))||对应的 SR|
-|MR|ForeignKey([MergeRequest](#合并请求模型-mergerequest))||对应的 MergeRequest|
+|MR|ForeignKey([MergeRequest](#mergerequest))||对应的 MergeRequest|
 
 其中，联合唯一(MR,SR)
 
@@ -98,7 +98,7 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |SR|ForeignKey([SR](../rms/#sr))||对应的 SR|
-|issue|ForeignKey([Issue](#议题模型-issue))||对应的议题|
+|issue|ForeignKey([Issue](#issue))||对应的议题|
 
 其中，联合唯一(SR,issue)
 
@@ -106,7 +106,7 @@
 
 |字段|类型|属性|说明|
 |-|-|-|-|
-|issue|ForeignKey([Issue](#议题模型-issue))||对应的议题|
-|MR|ForeignKey([MergeRequest](#合并请求模型-mergerequest))||对应的 MergeRequest|
+|issue|ForeignKey([Issue](#issue))||对应的议题|
+|MR|ForeignKey([MergeRequest](#mergerequest))||对应的 MergeRequest|
 
 其中，联合唯一(issue,MR)
