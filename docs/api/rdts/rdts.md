@@ -1219,3 +1219,152 @@ data 内容说明：
             "code": 0
         }
         ```
+
+## 操作 IssueSRAssociation
+
+### 查询 IssueSRAssociation
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|repo|int|仓库 id|
+|type|str|'issue-sr'|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+|data|list|仓库内的 Issue-SR 关系列表|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|查询成功|
+|其他|查询失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "repo": 1,
+            "type":"issue-sr"
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data":[]
+        }
+        ```
+
+### 创建 IssueSRAssociation
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'issue-sr'|
+|operation|str|'create'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|updateData|object|所创建的内容|
+
+updateData 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|issueId|int|关联的 issue 的 id|
+|SRId|int|关联的 SR 的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|创建成功|
+|其他|创建失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"issue-sr",
+            "operation":"create",
+            "data":{
+                 "updateData": {
+                     "issueId":1,
+                     "SRId":2
+                }
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+### 删除 IssueSRAssociation
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'issue-sr'|
+|operation|str|'delete'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|issueId|int|需要删除的议题的 id|
+|SRId|int|需要删除的功能需求的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|成功|
+|其他|失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"issue-sr"，
+            "operation":"delete",
+            "data":{
+                 "issueId":1,
+                 "SRId":2
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
