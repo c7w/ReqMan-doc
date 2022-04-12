@@ -44,7 +44,7 @@
 |repo|ForeignKey([Repository](#repository))|索引|合并请求归属的仓库|
 |title |Text||合并请求的名称，最长255字符|
 |description |Text ||合并请求的描述|
-|state|Text|Enum(mergerd,closed,openeds)|合并请求的状态，共有三种|
+|state|Text|Enum(merged,closed,opened)|合并请求的状态，共有三种|
 |authoredByEmail|Text||提请者的邮箱，最大长度 255 字符，默认为空|
 |authoredByUserName|Text|索引|提请者的用户名，最大长度 255 字符，默认为空|
 |authoredAt|Float||提请时间，可为空|
