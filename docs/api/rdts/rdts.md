@@ -82,7 +82,6 @@ updateData 内容说明：
 |-|-|-|
 |title|str|仓库的标题，最大长度255|
 |url|str|仓库的链接，最大长度 255|
-|project|int|仓库所在项目的 id|
 |description|str|仓库的描述|
 
 #### 响应状态
@@ -109,8 +108,7 @@ updateData 内容说明：
                  "updateData": {
                     "title": "a",
                     "description": "sx",
-                    "url": "233.edu",
-                    "project": 2
+                    "url": "233.edu"
                 }
             }
         }
@@ -223,6 +221,232 @@ data 内容说明：
             "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
             "project": 1,
             "type":"repo"，
+            "operation":"delete",
+            "data":{
+                 "id":1
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+## 操作 Commit
+
+### 查询 Commit
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|repo|int|仓库 id|
+|type|str|'commit'|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+|data|list|仓库内的提交记录列表|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|查询成功|
+|其他|查询失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "repo": 1,
+            "type":"commit"
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data":[]
+        }
+        ```
+
+### 创建 Commit
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'commit'|
+|operation|str|'create'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|updateData|object|所创建的内容|
+
+updateData 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|title|str|提交记录的标题，最大长度255|
+|url|str|提交记录的链接|
+|repo|int|提交记录所在仓库的 id|
+|hash_id|str|提交记录的 hash_id，最大长度 255|
+|message|str|提交记录的描述信息|
+|commiter_email|str|提交者的邮箱，最大长度 255|
+|commiter_name|str|提交者的名称，最大长度 255|
+|createdAt|float|创建时间|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|创建成功|
+|其他|创建失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"commit",
+            "operation":"create",
+            "data":{
+                 "updateData": {
+                    "title": "a",
+                    "url": "233.edu",
+                    "repo": 2,
+                    "hash_id":"acs",
+                    "message":"Some info",
+                    "commiter_email":"admin@233.edu",
+                    "commiter_name":"2333",
+                    "createdAt":"123.0"
+                }
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+### 修改 Commit
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'commit'|
+|operation|str|'update'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|id|int|需要修改的仓库的 id|
+|updateData|object|所修改的内容|
+
+updateData 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|title|str|提交记录的标题，最大长度255，可选|
+|url|str|提交记录的链接，可选|
+|repo|int|提交记录所在仓库的 id，可选|
+|hash_id|str|提交记录的 hash_id，最大长度 255，可选|
+|message|str|提交记录的描述信息，可选|
+|commiter_email|str|提交者的邮箱，最大长度 255，可选|
+|commiter_name|str|提交者的名称，最大长度 255，可选|
+|createdAt|float|创建时间，可选|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|成功|
+|其他|失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"commit"，
+            "operation":"update",
+            "data":{
+                 "id":1,
+                 "updateData": {
+                    "title": "aa",
+                    "createdAt":"123456789.0"
+                }
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+### 删除 Commit
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'commit'|
+|operation|str|'delete'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|id|int|需要删除的提交记录的 id|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|成功|
+|其他|失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"commit"，
             "operation":"delete",
             "data":{
                  "id":1
