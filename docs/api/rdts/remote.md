@@ -68,6 +68,156 @@
 |3|修改失败，因为这个仓库ID不存在|
 
 
+### 同步记录查询
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /rdts/repo_crawllog/</span>
+</div>
+
+用于查询远程仓库的同步记录。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "sfdgaga",
+            "repo": 1,
+            "project": 1,
+            "page": 1
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": [
+                {
+                    "id": 124,
+                    "time": 1649840324.738104,
+                    "status": 200,
+                    "message": "",
+                    "request_type": "merge",
+                    "finished": true,
+                    "updated": false
+                },
+                {
+                    "id": 123,
+                    "time": 1649840304.765841,
+                    "status": 200,
+                    "message": "",
+                    "request_type": "commit",
+                    "finished": false,
+                    "updated": false
+                },
+                ...
+            ]
+        }
+        ```
+
+#### 请求权限 
+项目管理员
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|repo|int/str|仓库ID|
+|page|int/str|记录页码|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|查询成功|
+|1|查询失败，因为仓库不存在|
+
+#### 响应数据
+相应数据是一个数组，数组各字段介绍如下
+|字段|类型|说明|
+|-|-|-|
+|id|int|同步ID|
+|time|float|同步开始时间，以秒计|
+|status|int|同步状态以远程服务器的HTTP状态码表示|
+|message|int|错误信息，如果同步状态不为200，则记录远程服务器返回的错误信息|
+|request_type|str|同步内容"merge","issue","commit"|
+|finished|bool|表示本次同步的内容是否已经处理完|
+|updated|bool|表示本次同步是否获得新内容|
+
+!!! info "同步过程"
+    同步时会先向远程服务器逐页请求数据，然后处理服务器返回的数据
+    - 如果逐页请求的过程中出现了一次失败，则记录同步状态和出错信息，本次同步终止
+    - 如果逐页请求成功，则标记同步状态为200，finished=false，开始处理数据
+    - 所有数据处理结束后，finished=true，本次同步结束
+
+### 同步记录查询 
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /rdts/crawl_detail/</span>
+</div>
+
+用于查询某次同步的修改情况。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "sfdgaga",
+            "crawl_id": 91,
+            "project": 1,
+            "page":5
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "log": {
+                    "id": 91,
+                    "repo": 1,
+                    "time": 1649829297.896791,
+                    "status": 200,
+                    "message": "",
+                    "request_type": "commit",
+                    "finished": true,
+                    "updated": true
+                },
+                "issue": [],
+                "merge": [],
+                "commit": [
+                    {
+                        "hash_id": "4501fa5929d130f36b997276728b9dc47f2899bb",
+                        "title": "[SR.003.906] Bugfix: scheduler & dev database  (#30)",
+                        "commiter_name": "c7w",
+                        "op": "update"
+                    }
+                ]
+            }
+        }
+        ```
+
+#### 请求权限 
+项目管理员
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|crwal_id|int/str|同步ID|
+|page|int/str|页码|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|查询成功|
+|1|查询失败，因为项目中没有这条同步记录|
+
+#### 响应数据
+相应数据是一个数组，数组各字段介绍如下
+|字段|类型|说明|
+|-|-|-|
+|log|object|同步基本信息|
+|commit/merge/issue|array|同步的内容及操作，操作包括 "add"，"remove"，"update"|
+
+!!! info "注意"
+    commit/merge/issue三个数组至多有1个是非空的，因为单次同步仅请求一种数据。
 
 ## 数据分析
 
@@ -180,7 +330,7 @@
 
 ### 迭代周期bug情况
 <div class="grid cards" markdown>
-- <span>**[ POST ]** &nbsp;&nbsp; /ums/iteration_bugs/</span>
+- <span>**[ GET ]** &nbsp;&nbsp; /rdts/iteration_bugs/</span>
 </div>
 
 用于质保工程师查看指定迭代周期的bug情况。
