@@ -12,7 +12,7 @@
 - <span>**[ POST ]** &nbsp;&nbsp; /rdts/repo_op/</span>
 </div>
 
-用于质保工程师查看指定开发工程师的近期或全部MergeRequest，代码行数，Issue等数据情况。
+用于创建或修改远程仓库。
 
 ??? example "示例"
     === "请求"
@@ -57,6 +57,7 @@
 !!! info "如何同步其他类型的远程仓库"
     - 在 `/rdts/query_class.py` 中继承 `RemoteRepoFetcher` 并实现其接口
     - 将新类型添加到 `rdts.query_class.type_map` 中
+
     这样就定义了新的远程仓库，其类型是 `type_map` 中定义的键名。
 
 #### 响应状态
@@ -70,20 +71,15 @@
 
 ### 同步记录查询
 <div class="grid cards" markdown>
-- <span>**[ POST ]** &nbsp;&nbsp; /rdts/repo_crawllog/</span>
+- <span>**[ GET ]** &nbsp;&nbsp; /rdts/repo_crawllog/</span>
 </div>
 
 用于查询远程仓库的同步记录。
 
 ??? example "示例"
     === "请求"
-        ```json
-        {
-            "sessionId": "sfdgaga",
-            "repo": 1,
-            "project": 1,
-            "page": 1
-        }
+        ```bash
+        curl https://example.com/rdts/repo_crawllog/?sessionId=Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74&repo=1&project=1&page=1
         ```
     === "响应"
         ```json
@@ -130,39 +126,37 @@
 |1|查询失败，因为仓库不存在|
 
 #### 响应数据
-相应数据是一个数组，数组各字段介绍如下
+响应数据是一个数组，数组各字段如下
+
 |字段|类型|说明|
 |-|-|-|
 |id|int|同步ID|
 |time|float|同步开始时间，以秒计|
-|status|int|同步状态以远程服务器的HTTP状态码表示|
+|status|int|同步状态，以远程服务器的HTTP状态码表示|
 |message|int|错误信息，如果同步状态不为200，则记录远程服务器返回的错误信息|
-|request_type|str|同步内容"merge","issue","commit"|
+|request_type|str|同步内容，为 "merge" , "issue" 或 "commit"|
 |finished|bool|表示本次同步的内容是否已经处理完|
-|updated|bool|表示本次同步是否获得新内容|
+|updated|bool|表示本次同步是否进行了更新，包括对已有记录的增加、修改、删除，不包括已有记录和SR, MR的匹配|
 
 !!! info "同步过程"
     同步时会先向远程服务器逐页请求数据，然后处理服务器返回的数据
+
     - 如果逐页请求的过程中出现了一次失败，则记录同步状态和出错信息，本次同步终止
     - 如果逐页请求成功，则标记同步状态为200，finished=false，开始处理数据
     - 所有数据处理结束后，finished=true，本次同步结束
 
+
 ### 同步记录查询 
 <div class="grid cards" markdown>
-- <span>**[ POST ]** &nbsp;&nbsp; /rdts/crawl_detail/</span>
+- <span>**[ GET ]** &nbsp;&nbsp; /rdts/crawl_detail/</span>
 </div>
 
 用于查询某次同步的修改情况。
 
 ??? example "示例"
     === "请求"
-        ```json
-        {
-            "sessionId": "sfdgaga",
-            "crawl_id": 91,
-            "project": 1,
-            "page":5
-        }
+        ```bash
+        curl https://example.com/rdts/crawl_detail/?sessionId=Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74&crawl_id=106&project=1&page=1
         ```
     === "响应"
         ```json
@@ -230,6 +224,7 @@
 
 ??? example "示例"
     === "请求"
+        查询 `id` 为 `1` 的开发工程师在近1周内的开发情况，展示详情。
         ```json
         {
             "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
@@ -239,7 +234,6 @@
             "limit": 604800
         }
         ```
-        查询 `id` 为 `1` 的开发工程师在近1周内的开发情况，展示详情。
     === "响应 1"
         请求中 `digest=true` 时
         ```json

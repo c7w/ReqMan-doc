@@ -80,6 +80,7 @@
 |-|-|-|-|
 |SR|ForeignKey([SR](../rms/#sr))||对应的 SR|
 |commit|ForeignKey([Commit](#commit))||对应的提交记录|
+|auto_added|Bool||是否是自动添加的|
 
 其中，联合唯一(SR,commit)
 
@@ -89,6 +90,7 @@
 |-|-|-|-|
 |SR|ForeignKey([SR](../rms/#sr))||对应的 SR|
 |MR|ForeignKey([MergeRequest](#mergerequest))||对应的 MergeRequest|
+|auto_added|Bool||是否是自动添加的|
 
 其中，联合唯一(MR,SR)
 
@@ -98,6 +100,7 @@
 |-|-|-|-|
 |SR|ForeignKey([SR](../rms/#sr))||对应的 SR|
 |issue|ForeignKey([Issue](#issue))||对应的议题|
+|auto_added|Bool||是否是自动添加的|
 
 其中，联合唯一(SR,issue)
 
@@ -107,5 +110,6 @@
 |-|-|-|-|
 |issue|ForeignKey([Issue](#issue))||对应的议题|
 |MR|ForeignKey([MergeRequest](#mergerequest))||对应的 MergeRequest|
+|auto_added|Bool||是否是自动添加的|
 
 其中，联合唯一(issue,MR)
