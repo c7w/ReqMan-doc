@@ -124,7 +124,7 @@ updateData 内容说明：
         }
         ```
 
-### 修改 SR
+### 修改 SR 整体
 
 #### 请求参数
 
@@ -178,6 +178,65 @@ updateData 内容说明：
                     "title": "aa",
                     "description": "bb",
                     "rank": 1325,
+                }
+            }
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+### 修改 SR 状态
+
+#### 请求参数
+
+|参数|类型|说明|
+|-|-|-|
+|project|int|项目id|
+|type|str|'SRState'|
+|operation|str|'update'|
+|data|object|操作的详细信息|
+
+data 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|id|int|需要修改的功能需求的 id|
+|updateData|object|所修改的内容|
+
+updateData 内容说明：
+
+|项目|类型|说明|
+|-|-|-|
+|state|str|功能需求的状态，"TODO" "WIP" "Reviewing" "Done" 四选一，可选|
+
+#### 响应状态
+|参数|类型|说明|
+|-|-|-|
+|code|int|返回码|
+
+返回码说明：
+
+|返回码|说明|
+|-|-|
+|0|成功|
+|其他|失败|
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "project": 1,
+            "type":"sr"，
+            "operation":"update",
+            "data":{
+                 "id":1,
+                 "updateData": {
+                    "state":"TODO"
                 }
             }
         }
