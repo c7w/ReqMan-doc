@@ -146,7 +146,7 @@
     - 所有数据处理结束后，finished=true，本次同步结束
 
 
-### 同步记录查询 
+### 同步记录详情
 <div class="grid cards" markdown>
 - <span>**[ GET ]** &nbsp;&nbsp; /rdts/crawl_detail/</span>
 </div>
