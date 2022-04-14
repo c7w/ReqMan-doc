@@ -10,7 +10,6 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |id|BigAuto|主键|仓库ID|
-|url|Text||仓库的链接，最大长度 255 字符|
 |project|ForeignKey([Project](../ums/#project))|索引|仓库的归属项目|
 |title |Text|索引|仓库名称，最长255字符|
 |description |Text ||仓库描述|
