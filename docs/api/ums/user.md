@@ -681,7 +681,8 @@ sequenceDiagram
         ```json
         {
             "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
-            "name": "lambda_x",
+            "prev": "99b1ff8f11781541f7f89f9bd41c4a17",
+            "curr:: "541f1ff9f9bd418f11787f8c4a2180b1"
         }
         ```
     === "响应"
@@ -704,3 +705,43 @@ sequenceDiagram
 |-|-|
 |0|修改成功|
 |2|修改失败，原因是旧密码不正确。|
+
+### 设置远程用户名
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/set_remote_username/</span>
+</div>
+
+用于配置本地用户在指定远程仓库中的用户名。
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "remote_name": "Btlmd",
+            "repo": 1,
+            "project": 1
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+项目任意成员
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|remote_name|str|用户在远程仓库中的用户名|
+|repo|str/int|远程仓库id|
+|project|str/int|仓库所在项目id|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|设置成功|
+|1|设置失败，因为用户名长于255字符|
+|2|设置失败，因为项目中没有这个仓库|

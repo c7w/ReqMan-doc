@@ -91,3 +91,13 @@
 |user |ForeignKey([User](#user))|索引|对应用户|
 |email |Char |索引|最长255字符|
 |verified |Boolean ||该邮箱是否已经验证，默认为False|
+
+## 用户-远程用户名关联模型 UserRemoteUsernameAssociation
+|字段|类型|属性|说明|
+|-|-|-|-|
+|user|ForeignKey([User](#user))|索|本地用户|
+|repository|ForeignKey([Repository](../rdts/#Repository))||仓库|
+|remote_name|Char||用户在远程仓库中的名称，最长255字符|
+
+其中，联合索引 (remote_name, repository)
+

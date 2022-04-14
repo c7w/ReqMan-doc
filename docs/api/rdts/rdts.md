@@ -3,7 +3,7 @@
         display: none;
     }
 </style>
-# RDTS 模块模型接口
+# RDTS模型操作接口
 
 !!! warning 
     不加特殊说明，所有请求都需要有 `sessionId` 字段。
@@ -60,7 +60,10 @@
         ```
 
 ### 创建 Repository
-
+### 修改 Repository
+!!! info "更新提示"
+    考虑到爬虫中使用的远程仓库模型，对创建和修改Repository的接口进行了重构，现移至了 （TO BE ADDED）
+<!--
 #### 请求参数
 
 |参数|类型|说明|
@@ -185,7 +188,7 @@ updateData 内容说明：
             "code": 0
         }
         ```
-
+-->
 ### 删除 Repository
 
 #### 请求参数

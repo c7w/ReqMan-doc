@@ -18,7 +18,8 @@ nav:
       - RMS模块接口: api/rms/rms.md
     - RDTS模块:
       - api/rdts/index.md
-      - RDTS模块接口: api/rdts/rdts.md
+      - RDTS模型操作接口: api/rdts/rdts.md
+      - 远程仓库和开发数据: api/rdts/remote.md
   - 模型文档:
     - model/index.md
     - UMS模型: model/ums.md

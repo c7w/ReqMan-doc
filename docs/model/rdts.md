@@ -10,7 +10,6 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |id|BigAuto|主键|仓库ID|
-|url|Text||仓库的链接，最大长度 255 字符|
 |project|ForeignKey([Project](../ums/#project))|索引|仓库的归属项目|
 |title |Text|索引|仓库名称，最长255字符|
 |description |Text ||仓库描述|
@@ -81,6 +80,7 @@
 |-|-|-|-|
 |SR|ForeignKey([SR](../rms/#sr))||对应的 SR|
 |commit|ForeignKey([Commit](#commit))||对应的提交记录|
+|auto_added|Bool||是否是自动添加的|
 
 其中，联合唯一(SR,commit)
 
@@ -90,6 +90,7 @@
 |-|-|-|-|
 |SR|ForeignKey([SR](../rms/#sr))||对应的 SR|
 |MR|ForeignKey([MergeRequest](#mergerequest))||对应的 MergeRequest|
+|auto_added|Bool||是否是自动添加的|
 
 其中，联合唯一(MR,SR)
 
@@ -99,6 +100,7 @@
 |-|-|-|-|
 |SR|ForeignKey([SR](../rms/#sr))||对应的 SR|
 |issue|ForeignKey([Issue](#issue))||对应的议题|
+|auto_added|Bool||是否是自动添加的|
 
 其中，联合唯一(SR,issue)
 
@@ -108,5 +110,6 @@
 |-|-|-|-|
 |issue|ForeignKey([Issue](#issue))||对应的议题|
 |MR|ForeignKey([MergeRequest](#mergerequest))||对应的 MergeRequest|
+|auto_added|Bool||是否是自动添加的|
 
 其中，联合唯一(issue,MR)
