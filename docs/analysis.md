@@ -20,8 +20,10 @@
 | 查看 当前项目功能需求|O|O|O|O|X|
 | 修改 当前项目功能需求|O|O|X|X|X|
 | 修改 当前项目功能需求状态|O|O|O|O|X|
+| 查看 原始需求和功能需求关联|O|O|O|O|O|
 | 修改 原始需求和功能需求关联|O|O|X|X|X|
-| 修改 当前功能需求迭代|O|O|X|X|X|
+| 查看 当前功能需求与迭代关联|O|O|O|O|O|
+| 修改 当前功能需求与迭代关联|O|O|X|X|X|
 | 查看 当前项目迭代周期|O|O|O|O|O|
 | 修改 当前项目迭代周期|O|O|X|X|X|
 | 查看 当前迭代负责人|O|O|O|O|O|
@@ -33,13 +35,12 @@
 | 查看 MR|O|O|O|O|O|
 | 查看 MR 和功能需求关联|O|O|O|O|O|
 | 修改 MR 和功能需求关联|O|X|X|O|X|
-| 查看 issue|O|O|O|O|O|
-| 查看 issue 和 MR 的关联|O|O|O|O|O|
-| 修改 issue 和 MR 的关联|O|X|X|O|X|
-| 查看 repo |O|O|O|O|O|
-| 修改 repo |O|X|X|O|X|
-| 查看 issue |O|O|O|O|O|
-| 修改 issue |O|X|X|O|X|
+| 查看 Issue|O|O|O|O|O|
+| 查看 Issue 和 MR 的关联|O|O|O|O|O|
+| 修改 Issue 和 MR 的关联|O|X|X|O|X|
+| 查看 Repo |O|O|O|O|O|
+| 修改 Repo |O|X|X|X|X|
+| 查看 Issue |O|O|O|O|O|
 
 
 // TODO: 更加细化权限，增加 RDTS 部分权限配置
