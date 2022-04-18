@@ -1,17 +1,44 @@
-# Welcome to MkDocs
+# ReqMan 项目概述
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## 项目背景
 
-## Commands
+照着文档抄，200 字
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
 
-## Project layout
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## 项目目标
+
+照着文档抄 + 自己写，200 字
+
+
+
+## 用户故事
+
+`以第一人称视角叙述，编故事，编故事！`
+
+**用户 A**：我是一个项目管理员。然后我遇到了一些问题，感觉asiodioasd。我需要asiodasiodasod。
+
+**用户 B**：我是项目 Alpha 的开发工程师。我的老板总是 push 我干活，干活，干活。
+
+**用户 C**：我是一个项目 ReqMan 的质保工程师。我想知道谁在项目里摸鱼，可是 Git 上的数据展现方式并不直观，基于 commit 次数的统计也不够合理。
+
+（这一个 section 就自己编吧，照着我们做了的功能编，大概写 600 ~ 800 字）
+
+
+
+## 需求清单
+
+### 需求表
+
+| 需求编号* | 需求描述 | 交付时间 |
+| --------- | -------- | -------- |
+| <IR.001>  |          | Sprint 2 |
+| [IR.031]  |          |          |
+|           |          |          |
+
+*注：`<·>` 表示必做，`[·]` 表示选做
+
+### 开发甘特图
+
+// TODO: @ c7w
+
