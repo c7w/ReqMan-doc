@@ -55,7 +55,17 @@
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'url': '', 
+                'project': 1, 
+                'title': 'repo1', 
+                'description': 'a common repo', 
+                'createdAt': 1650883913.901973, 
+                'createdBy': 1, 
+                'disabled': False, 
+                'remote': None
+            }]
         }
         ```
 
@@ -273,7 +283,35 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'hash_id': 'acbd', 
+                'repo': 1, 'title': 
+                'Test.001.001', 
+                'message': 'just a test', 
+                'commiter_email': 'admin@233.edu', 
+                'commiter_name': '233', 
+                'createdAt': 1.0, 
+                'url': '233.edu', 
+                'disabled': False, 
+                'user_committer': None, 
+                'additions': -1, 
+                'deletions': -1},
+            {
+                'id': 2, 
+                'hash_id': 'ToUseID', 
+                'repo': 1, 
+                'title': 'Test.001.001', 
+                'message': 'just a test', 
+                'commiter_email': 'admin@233.edu', 
+                'commiter_name': '233', 
+                'createdAt': 1.0, 
+                'url': '233.edu', 
+                'disabled': False, 
+                'user_committer': None, 
+                'additions': -1, 
+                'deletions': -1
+            }]
         }
         ```
 
@@ -499,7 +537,24 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'merge_id': 1, 
+                'repo': 1, 
+                'title': 'Merge', 
+                'description': '98',
+                'state': 'opened', 
+                'authoredByEmail': '', 
+                'authoredByUserName': '', 
+                'authoredAt': None, 
+                'reviewedByEmail': '', 
+                'reviewedByUserName': '', 
+                'reviewedAt': None, 
+                'disabled': False, 
+                'url': '98.233.edu', 
+                'user_authored': None, 
+                'user_reviewed': None
+            }]
         }
         ```
 
@@ -730,7 +785,27 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'issue_id': 1, 
+                'repo': 1, 
+                'title': 'First', 
+                'description': 'first', 
+                'state': 'closed', 
+                'authoredByUserName': '', 
+                'authoredAt': None, 
+                'updatedAt': None, 
+                'closedByUserName': '', 
+                'closedAt': None, 
+                'assigneeUserName': '', 
+                'disabled': False, 
+                'url': '233.edu', 
+                'labels': '[]', 
+                'is_bug': False, 
+                'user_assignee': None, 
+                'user_authored': None, 
+                'user_closed': None
+            }]
         }
         ```
 
@@ -961,7 +1036,12 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'commit': 1, 
+                'SR': 1, 
+                'auto_added': False
+            }]
         }
         ```
 
@@ -1110,7 +1190,12 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'MR': 1, 
+                'SR': 1, 
+                'auto_added': False
+            }]
         }
         ```
 
@@ -1259,7 +1344,12 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'issue': 1, 
+                'SR': 1, 
+                'auto_added': False
+            }]
         }
         ```
 
@@ -1410,7 +1500,12 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'issue': 1, 
+                'MR': 1, 
+                'auto_added': False
+            }]
         }
         ```
 

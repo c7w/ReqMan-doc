@@ -55,7 +55,19 @@
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                    'id': 1, 
+                    'project': 1,
+                    'title': 'sr1',
+                    'description': 'sr1', 
+                    'priority': 3,
+                    'rank': 1, 
+                    'pattern': None, 
+                    'state': 'TODO',
+                    'createdBy': 1, 
+                    'createdAt': 1650883914.407009, 
+                    'disabled': False
+            }]
         }
         ```
 
@@ -333,7 +345,15 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'project': 1, 
+                'title': 'ir1', 
+                'description': 'ir1', 
+                'rank': 1, 
+                'createdBy': 1, 
+                'createdAt': 1650883914.406008, 'disabled': False
+            }]
         }
         ```
 
@@ -387,7 +407,6 @@ updateData 内容说明：
                     "title": "aa",
                     "description": "bb",
                     "rank": 132,
-
                 }
             }
         }
@@ -547,7 +566,16 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'project': 1,
+                'sid':1, 
+                'title': 'it1', 
+                'begin': '1650883914.406008', 
+                'end': 1650884914.406008,
+                'createdAt': 1650883914.406008, 
+                'disabled': False
+            }]
         }
         ```
 
@@ -763,7 +791,16 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'project': 1, 
+                'title': 'service1', 
+                'description': 'service1', 
+                'rank': 1, 
+                'createdBy': 1, 
+                'createdAt': 1650883914.407906, 
+                'disabled': False
+            }]
         }
         ```
 
@@ -978,7 +1015,16 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id':1,
+                'project':1,
+                'SR':1,
+                'description':'Changed by 2333',
+                'formerState':'TODO',
+                'formerDescription':'SR1',
+                'changedBy':1,
+                'changedAt':12345.0
+            }]
         }
         ```
 
@@ -1018,8 +1064,13 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'user': 1, 
+                'iteration': 1
+            }]
         }
+        ```
 
 ### 创建 user-iteration 联合关系
 
@@ -1167,8 +1218,13 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'ir': 1, 
+                'sr': 1
+            }]
         }
+        ```
 
 ### 创建 ir-sr 联合关系
 
@@ -1316,8 +1372,13 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'iteration': 1, 
+                'sr': 1
+            }]
         }
+        ```
 
 ### 创建 sr-iteration 联合关系
 
@@ -1465,8 +1526,13 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'service': 1, 
+                'sr': 1
+            }]
         }
+        ```
 
 ### 查询 SR 对应的 service
 
@@ -1504,8 +1570,13 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'user': 1, 
+                'sr': 2
+            }]
         }
+        ```
 
 ### 查询  service 对应的 SR
 
@@ -1543,8 +1614,13 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'service': 2, 
+                'sr': 1
+            }]
         }
+        ```
 
 ### 创建 sr-iteration 联合关系
 
@@ -1692,8 +1768,13 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'iteration': 1, 
+                'ir': 1
+            }]
         }
+        ```
 
 ### 创建 ir-iteration 联合关系
 
@@ -1841,8 +1922,13 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'project': 1, 
+                'itration': 1
+            }]
         }
+        ```
 
 ### 创建 project-iteration 联合关系
 
@@ -1986,8 +2072,13 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'user': 1, 
+                'sr': 1
+            }]
         }
+        ```
 
 ### 创建 user-sr 联合关系
 
