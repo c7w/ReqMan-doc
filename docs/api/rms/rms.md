@@ -66,8 +66,8 @@
                     'state': 'TODO',
                     'createdBy': 1, 
                     'createdAt': 1650883914.407009, 
-                    'disabled': False}
-            ]
+                    'disabled': False
+            }]
         }
         ```
 
@@ -352,7 +352,8 @@ data 内容说明：
                 'description': 'ir1', 
                 'rank': 1, 
                 'createdBy': 1, 
-                'createdAt': 1650883914.406008, 'disabled': False}]
+                'createdAt': 1650883914.406008, 'disabled': False
+            }]
         }
         ```
 
@@ -406,7 +407,6 @@ updateData 内容说明：
                     "title": "aa",
                     "description": "bb",
                     "rank": 132,
-
                 }
             }
         }
@@ -574,7 +574,8 @@ data 内容说明：
                 'begin': '1650883914.406008', 
                 'end': 1650884914.406008,
                 'createdAt': 1650883914.406008, 
-                'disabled': False}]
+                'disabled': False
+            }]
         }
         ```
 
@@ -798,7 +799,8 @@ data 内容说明：
                 'rank': 1, 
                 'createdBy': 1, 
                 'createdAt': 1650883914.407906, 
-                'disabled': False}]
+                'disabled': False
+            }]
         }
         ```
 
