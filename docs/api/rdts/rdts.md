@@ -55,7 +55,17 @@
         ```json
         {
             "code": 0,
-            "data":[]
+            "data":[{
+                'id': 1, 
+                'url': '', 
+                'project': 1, 
+                'title': 'repo1', 
+                'description': 'a common repo', 
+                'createdAt': 1650883913.901973, 
+                'createdBy': 1, 
+                'disabled': False, 
+                'remote': None
+            }]
         }
         ```
 
@@ -300,7 +310,8 @@ data 内容说明：
                 'disabled': False, 
                 'user_committer': None, 
                 'additions': -1, 
-                'deletions': -1}]
+                'deletions': -1
+            }]
         }
         ```
 
@@ -542,7 +553,8 @@ data 内容说明：
                 'disabled': False, 
                 'url': '98.233.edu', 
                 'user_authored': None, 
-                'user_reviewed': None},]
+                'user_reviewed': None
+            }]
         }
         ```
 
@@ -792,7 +804,8 @@ data 内容说明：
                 'is_bug': False, 
                 'user_assignee': None, 
                 'user_authored': None, 
-                'user_closed': None}]
+                'user_closed': None
+            }]
         }
         ```
 
@@ -1027,7 +1040,8 @@ data 内容说明：
                 'id': 1, 
                 'commit': 1, 
                 'SR': 1, 
-                'auto_added': False}]
+                'auto_added': False
+            }]
         }
         ```
 
@@ -1180,7 +1194,8 @@ data 内容说明：
                 'id': 1, 
                 'MR': 1, 
                 'SR': 1, 
-                'auto_added': False}]
+                'auto_added': False
+            }]
         }
         ```
 
@@ -1333,7 +1348,8 @@ data 内容说明：
                 'id': 1, 
                 'issue': 1, 
                 'SR': 1, 
-                'auto_added': False}]
+                'auto_added': False
+            }]
         }
         ```
 
