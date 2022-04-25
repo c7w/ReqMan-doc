@@ -1504,7 +1504,8 @@ data 内容说明：
                 'id': 1, 
                 'issue': 1, 
                 'MR': 1, 
-                'auto_added': False}]
+                'auto_added': False
+            }]
         }
         ```
 
