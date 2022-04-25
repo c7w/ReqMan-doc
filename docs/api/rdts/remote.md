@@ -240,12 +240,7 @@
         {
             "code": 0,
             "data": {
-                "mr_count": 3,
-                "commit_count": 12,
-                "additions": 1984,
-                "deletions": 647,
-                "issue_count": 5,
-                "issue_times": [39794, 191275, 63799, 151260, 83450]
+                // TODO: add a refreshed example
             }
         }
         ```
