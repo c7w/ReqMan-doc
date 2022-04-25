@@ -1064,10 +1064,13 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[{'id': 1, 
-                    'user': 1, 
-                    'iteration': 1}]
+            "data":[{
+                'id': 1, 
+                'user': 1, 
+                'iteration': 1
+            }]
         }
+        ```
 
 ### 创建 user-iteration 联合关系
 
@@ -1215,10 +1218,13 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[{'id': 1, 
+            "data":[{
+                'id': 1, 
                 'ir': 1, 
-                'sr': 1}]
+                'sr': 1
+            }]
         }
+        ```
 
 ### 创建 ir-sr 联合关系
 
@@ -1366,9 +1372,11 @@ data 内容说明：
         ```json
         {
             "code": 0,
-            "data":[{'id': 1, 
+            "data":[{
+                'id': 1, 
                 'iteration': 1, 
-                'sr': 1}]
+                'sr': 1
+            }]
         }
 
 ### 创建 sr-iteration 联合关系
@@ -1520,7 +1528,8 @@ data 内容说明：
             "data":[{
                 'id': 1, 
                 'service': 1, 
-                'sr': 1}]
+                'sr': 1
+            }]
         }
 
 ### 查询 SR 对应的 service
@@ -1563,7 +1572,7 @@ data 内容说明：
                 'id': 1, 
                 'user': 1, 
                 'sr': 2
-                }]
+            }]
         }
 
 ### 查询  service 对应的 SR
@@ -1605,7 +1614,8 @@ data 内容说明：
             "data":[{
                 'id': 1, 
                 'service': 2, 
-                'sr': 1}]
+                'sr': 1
+            }]
         }
 
 ### 创建 sr-iteration 联合关系
@@ -1757,7 +1767,8 @@ data 内容说明：
             "data":[{
                 'id': 1, 
                 'iteration': 1, 
-                'ir': 1}]
+                'ir': 1
+            }]
         }
 
 ### 创建 ir-iteration 联合关系
@@ -1909,7 +1920,8 @@ data 内容说明：
             "data":[{
                 'id': 1, 
                 'project': 1, 
-                'itration': 1}]
+                'itration': 1
+            }]
         }
 
 ### 创建 project-iteration 联合关系
@@ -2057,7 +2069,8 @@ data 内容说明：
             "data":[{
                 'id': 1, 
                 'user': 1, 
-                'sr': 1}]
+                'sr': 1
+            }]
         }
 
 ### 创建 user-sr 联合关系
