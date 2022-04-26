@@ -465,11 +465,11 @@
         查询 `id` 为 `1` 的开发工程师在近1周内的开发情况，展示详情。
         ```json
         {
-            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
-            "project": 1,
-            "digest": false,
-            "dev_id": 1,
-            "limit": 604800
+            "project": 2,
+            "digest": true,
+            "dev_id": [17, 25],
+            "limit": 604800,
+            "sessionId": "b4RCDE7ovT5IMQrV2JnyC947JN8j8kD8"
         }
         ```
     === "响应 1"
@@ -477,9 +477,50 @@
         ```json
         {
             "code": 0,
-            "data": {
-                
-            }
+            "data": [
+                {
+                    "mr_count": 4,
+                    "commit_count": 19,
+                    "additions": 2500,
+                    "deletions": 709,
+                    "issue_count": 4,
+                    "issue_times": [
+                        522758,
+                        593099,
+                        2555,
+                        21833
+                    ],
+                    "commit_times": [
+                        1650339623,
+                        1650343097,
+                        1650343543,
+                        1650347507,
+                        1650347890,
+                        1650371087,
+                        1650371663
+                    ]
+                },
+                {
+                    "mr_count": 5,
+                    "commit_count": 11,
+                    "additions": 2742,
+                    "deletions": 392,
+                    "issue_count": 3,
+                    "issue_times": [
+                        635771,
+                        635800,
+                        150777
+                    ],
+                    "commit_times": [
+                        1650356448,
+                        1650377940,
+                        1650425209,
+                        1650425628,
+                        1650902311,
+                        1650902956
+                    ]
+                }
+            ]
         }
         ```
     === "响应 2"
@@ -614,45 +655,6 @@
 |-|-|-|
 |bug_issues|array\[int\]|该迭代周期中所有被标记为bug的issue的详情，及其关联SR的相关信息|
 
-### 配置提取远端仓库信息的正则表达式
-<div class="grid cards" markdown>
-- <span>**[ POST ]** &nbsp;&nbsp; /ums/config_regex/</span>
-</div>
-
-配置同步时，以何种规则匹配SR标题，以何种规则匹配 MergeRequest 和 Issue 的关联
-
-??? example "示例"
-    === "请求"
-        ```json
-        {
-            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
-            "remote_issue_iid_extract" : "(?<=\(#)\d+(?=\))",
-            "remote_sr_pattern_extract": "(?<=\[)SR.\d{3}.\d{3}(?=(.[I/F/B])?])",
-            "project": 1    
-        }
-        ```
-    === "响应"
-        ```json
-        {
-            "code": 0
-        }
-        ```
-
-#### 请求权限 
-项目管理员
-#### 请求参数
-|参数|类型|说明|
-|-|-|-|
-|project|int/str|项目ID|
-|remote_sr_pattern_extract|str|表示如何从commit/merge request/issue标题中提取SR标题|
-|remote_issue_iid_extract|str|表示如何从commit message中提取issue ID|
-
-
-#### 响应状态
-|状态码|说明|
-|-|-|
-|0|操作成功|
-
 ### 同步记录查询
 <div class="grid cards" markdown>
 - <span>**[ GET ]** &nbsp;&nbsp; /rdts/repo_crawllog/</span>
@@ -725,7 +727,7 @@
 |updated|bool|表示本次同步是否进行了更新，包括对已有记录的增加、修改、删除，不包括已有记录和SR, MR的匹配|
 |is_webhook|bool|表明是否是webhook自动推送导致的同步|
 
-!!! info "定时同步过程"
+!!! info "定时同步流程简介"
     定时同步时会先向远程服务器逐页请求数据，然后处理服务器返回的数据
 
     - 如果逐页请求的过程中出现了一次失败，则记录同步状态和出错信息，本次同步终止
