@@ -7,6 +7,8 @@ nav:
     - index.md
   - 需求分析:
     - analysis.md
+  - 模块设计:
+    - module.md
   - API 文档:
     - api/index.md
     - UMS模块:
