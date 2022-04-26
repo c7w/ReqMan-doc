@@ -17,6 +17,8 @@
 |disabled |Boolean| |是否删除，默认为False|
 |createdAt |Float| |项目创建时间，默认创建当时的时间戳|
 |avatar |Text| |项目图标，base64编码保存|
+|remote_sr_pattern_extract|Text||用于匹配SR标题的正则表达式|
+|remote_issue_iid_extract|Text||用于匹配issue编号的正则表达式|
 
 
 
@@ -67,7 +69,7 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |hash1 |Char |索引， 唯一|邮件中发送的哈希值，最长100字符|
-|hash2 |Char |索引， 唯一|修改密码会话的哈希值，最长100字符|
+|hash2 |Char |索引|修改密码会话的哈希值，最长100字符|
 |user |ForeignKey([User](#user))||修改密码的用户|
 |email |Text ||用于修改密码的邮箱|
 |createdAt |Float ||申请修改密码的时间，默认为创建时的时间戳|
@@ -100,4 +102,23 @@
 |remote_name|Char||用户在远程仓库中的名称，最长255字符|
 
 其中，联合索引 (remote_name, repository)
+
+## 配置模型 Config
+
+
+
+|字段|类型|属性|说明|
+|-|-|-|-|
+|key|Char|索引|配置键，最长255字符|
+|value|Text||配置值|
+
+!!! info "配置的初始化"
+    该模型主要用于保存一些在运行过程中可能随时改变的数据，如SMTP发信服务配置、修改密码邮件的模板等等。
+
+    在 `ums` 模块被加载，且相关数据表已经创建后
+    
+    - 若数据库中已经存在该键，则值维持不变
+    - 若数据库中不存在该键，则将键-值对的默认值添加到数据库中。
+    
+
 
