@@ -45,7 +45,7 @@
 |参数|类型|说明|
 |-|-|-|
 |project|int/str|项目ID|
-|type|str|远程仓库类型，这里只实现了gitlab|
+|type|str|远程仓库类型，这里只实现了`gitlab`|
 |remote_id|str|远程仓库ID|
 |access_token|str|远程仓库访问令牌|
 |enable_crawling|bool|是否同步该远程仓库|
@@ -220,7 +220,8 @@
 </div>
 
 用于在用户新建项目后，查看项目是否能正确和远程仓库对接。
-该接口会向远程仓库使用用户提供的ID和Access-Token请求项目信息，将远程仓库的返回进行转发，便于用户判断自己是否正确配置了远程仓库。
+
+该接口会使用用户提供的ID和Access-Token向远程仓库请求项目信息，将远程仓库的响应进行转发，便于用户判断自己是否正确配置了远程仓库。
 
 ??? example "示例"
     === "请求"
@@ -228,18 +229,18 @@
         curl https://example.com/rdts/test_access_token/?project=26&repository=16&sessionId=b4RCDE7ovT5IMQrV2JnyCZicJN8j8kD8
         ```
     === "响应1"
-    ```json
-    {
-        "code":0,
-        "data":{
-            "status":401,
-            "response":
-            {
-                "message":"401 Unauthorized"
+        ```json
+        {
+            "code":0,
+            "data":{
+                "status":401,
+                "response":
+                {
+                    "message":"401 Unauthorized"
+                }
             }
         }
-    }
-    ```
+        ```
     === "响应2"
         ```json
         {
@@ -653,7 +654,7 @@
 #### 响应数据
 |字段|类型|说明|
 |-|-|-|
-|bug_issues|array\[int\]|该迭代周期中所有被标记为bug的issue的详情，及其关联SR的相关信息|
+|bug_issues|array\[objects\]|该迭代周期中所有被标记为bug的issue的详情，及其关联SR的相关信息|
 
 ### 同步记录查询
 <div class="grid cards" markdown>
@@ -675,10 +676,10 @@
                 {
                     "id": 124,
                     "time": 1649840324.738104,
-                    "status": 200,
-                    "message": "",
+                    "status": 401,
+                    "message": "401 Unauthorized",
                     "request_type": "merge",
-                    "finished": true,
+                    "finished": false,
                     "updated": false
                     "is_webhook": false
                 },
@@ -726,10 +727,3 @@
 |finished|bool|表示本次同步的内容是否已经处理完|
 |updated|bool|表示本次同步是否进行了更新，包括对已有记录的增加、修改、删除，不包括已有记录和SR, MR的匹配|
 |is_webhook|bool|表明是否是webhook自动推送导致的同步|
-
-!!! info "定时同步流程简介"
-    定时同步时会先向远程服务器逐页请求数据，然后处理服务器返回的数据
-
-    - 如果逐页请求的过程中出现了一次失败，则记录同步状态和出错信息，本次同步终止
-    - 如果逐页请求成功，则标记同步状态为200，finished=false，开始处理数据
-    - 所有数据处理结束后，finished=true，本次同步结束
