@@ -22,7 +22,7 @@
 
 |字段|类型|属性|说明|
 |-|-|-|-|
-|user |ForeignKey([User](../user/#user))|索引|对应的用户|
+|user |ForeignKey([User](../ums/#user))|索引|对应的用户|
 |iteration|ForeignKey([Iteration](#iteration))|索引|对应的迭代|
 
 其中，联合索引 (user, iteration)
@@ -56,10 +56,10 @@
 |priority|Int ||功能需求的优先级|
 |rank|Int||功能需求的优先级|
 |IR|ManyToMany||关联的IR|
-|state|Text|Enum (TODO, WIP, Reviewing, Done)|功能需求的状态，共有四种|
+|state|Text||功能需求的状态，包含`TODO`, `WIP`, `Done`, `Reviewing`|
 |disabled |Boolean| |是否删除，默认为False|
 |createdAt |Float| |功能需求创建时间，默认创建当时的时间戳|
-|createBy|ForeignKey([User](../user/#user))||创建的用户|
+|createBy|ForeignKey([User](../ums/#user))||创建的用户|
 
 其中，联合索引(title,project)
 
@@ -92,7 +92,7 @@
 |rank|Int||服务的序|
 |disabled |Boolean| |是否删除，默认为False|
 |createdAt |Float| |服务创建时间，默认创建当时的时间戳|
-|createBy|ForeignKey([User](../user/#user))||创建的用户|
+|createBy|ForeignKey([User](../ums/#user))||创建的用户|
 
 其中，联合索引(title,project)
 
@@ -104,14 +104,14 @@
 |project|ForeignKey([Project](../ums/#project))||  变更记录的归属|
 |SR|ForeignKey([SR](#sr))||归属的 SR|
 |description|Text||变更的描述|
-|formerState|Text|Enum(TODO, WIP, Done, Reviewing)|变更前的状态|
+|formerState|Text||变更前的状态，包含`TODO`, `WIP`, `Done`, `Reviewing`|
 |formerDescription|Text||变更之前 SR 的描述|
-|changedBy|ForeignKey([User](../user/#user))||更改 SR 的用户|
+|changedBy|ForeignKey([User](../ums/#user))||更改 SR 的用户|
 |changedAt|Float||修改时间，默认修改当时的时间戳|
-|autoAdded|Boolean|表示该技术是否被自动添加|
-|autoAddCrawl|ForeignKey(CrawlLog)||表示是哪次同步触发了这个SR状态改变|
-|autoAddedTriggerType|CharField||表示是否何种同步导致状态改变，包括`commit`,`merge`, `issue`,`rollback`|
-|autoAddedTriggerValue|Integer|表示触发该状态改变的事件在在数据库中的 `id` ；如`Commit.id`,`Issue.id`等|
+|autoAdded|Boolean||该技术是否被自动添加|
+|autoAddCrawl|ForeignKey(CrawlLog)||是哪次同步触发了这个SR状态改变|
+|autoAddedTriggerType|CharField||是否何种同步导致状态改变，包括`commit`,`merge`, `issue`,`rollback`|
+|autoAddedTriggerValue|Integer||触发该状态改变的事件在在数据库中的 `id` ；如`Commit.id`,`Issue.id`等|
 
 
 ## 服务-功能需求关联模型 ServiceSRAssociation
@@ -146,4 +146,4 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |SR|ForeignKey([SR](#sr))||归属的 SR|
-|user|ForeignKey([User](../user/#user))|唯一|主管该 SR 的用户|
+|user|ForeignKey([User](../ums/#user))|唯一|主管该 SR 的用户|
