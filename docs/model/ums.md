@@ -25,8 +25,8 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |id |BigAuto |主键|用户ID|
-|name |Char |索引， 唯一|用户名，最长255字符|
-|email |Char |索引， 唯一|用户邮箱，最长255字符|
+|name |Char |索引|用户名，最长255字符|
+|email |Char |索引|用户邮箱，最长255字符|
 |password |Text ||用户密码，储存哈希后的结果|
 |avatar |Text| |用户头像，base64编码保存|
 |disabled |Boolean ||是否删除，默认为False|

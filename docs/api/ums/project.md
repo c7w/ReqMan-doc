@@ -460,3 +460,42 @@
 |状态码|说明|
 |-|-|
 |0|修改成功
+
+### 配置提取远端信息的正则表达式
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /ums/config_regex/</span>
+</div>
+
+配置同步时，以何种规则匹配SR标题，以何种规则匹配 MergeRequest 和 Issue 的关联
+
+??? example "示例"
+    === "请求"
+        ```json
+        {
+            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
+            "remote_issue_iid_extract" : "(?<=\(#)\d+(?=\))",
+            "remote_sr_pattern_extract": "(?<=\[)SR.\d{3}.\d{3}(?=(.[I/F/B])?])",
+            "project": 1    
+        }
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0
+        }
+        ```
+
+#### 请求权限 
+项目管理员
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|remote_sr_pattern_extract|str|表示如何从commit/merge request/issue标题中提取SR标题|
+|remote_issue_iid_extract|str|表示如何从commit message中提取issue ID|
+
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|操作成功|

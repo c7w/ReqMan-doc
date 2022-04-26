@@ -22,7 +22,7 @@
             "project": 1,
             "type": "gitlab",
             "remote_id": "791",
-            "access_token": "vzDY55aaSA-5rjeeYYxxn",
+            "access_token": "vzDY55aaSA3-5rjeeYYxxn",
             "enable_crawling": true,
             "info": {
                 "base_url": "https://gitlab.secoder.net"
@@ -45,7 +45,7 @@
 |参数|类型|说明|
 |-|-|-|
 |project|int/str|项目ID|
-|type|str|远程仓库类型，这里只实现了gitlab|
+|type|str|远程仓库类型，这里只实现了`gitlab`|
 |remote_id|str|远程仓库ID|
 |access_token|str|远程仓库访问令牌|
 |enable_crawling|bool|是否同步该远程仓库|
@@ -213,6 +213,245 @@
 !!! info "注意"
     commit/merge/issue三个数组至多有1个是非空的，因为单次同步仅请求一种数据。
 
+
+### 测试远程仓库是否正确配置
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /rdts/test_access_token/</span>
+</div>
+
+用于在用户新建项目后，查看项目是否能正确和远程仓库对接。
+
+该接口会使用用户提供的ID和Access-Token向远程仓库请求项目信息，将远程仓库的响应进行转发，便于用户判断自己是否正确配置了远程仓库。
+
+??? example "示例"
+    === "请求"
+        ```bash
+        curl https://example.com/rdts/test_access_token/?project=26&repository=16&sessionId=b4RCDE7ovT5IMQrV2JnyCZicJN8j8kD8
+        ```
+    === "响应1"
+        ```json
+        {
+            "code":0,
+            "data":{
+                "status":401,
+                "response":
+                {
+                    "message":"401 Unauthorized"
+                }
+            }
+        }
+        ```
+    === "响应2"
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "status": 200,
+                "response": {
+                    "id": 469,
+                    "description": null,
+                    "name": "backend",
+                    "name_with_namespace": "undefined / backend",
+                    "path": "backend",
+                    "path_with_namespace": "undefined/backend",
+                    "created_at": "2022-03-11T09:11:58.942Z",
+                    "default_branch": "dev",
+                    "tag_list": [],
+                    "ssh_url_to_repo": "git@gitlab.secoder.net:undefined/backend.git",
+                    "http_url_to_repo": "https://gitlab.secoder.net/undefined/backend.git",
+                    "web_url": "https://gitlab.secoder.net/undefined/backend",
+                    "readme_url": "https://gitlab.secoder.net/undefined/backend/-/blob/dev/readme.md",
+                    "avatar_url": null,
+                    "forks_count": 0,
+                    "star_count": 0,
+                    "last_activity_at": "2022-04-26T02:05:35.147Z",
+                    "namespace": {
+                        "id": 271,
+                        "name": "undefined",
+                        "path": "undefined",
+                        "kind": "group",
+                        "full_path": "undefined",
+                        "parent_id": null,
+                        "avatar_url": null,
+                        "web_url": "https://gitlab.secoder.net/groups/undefined"
+                    },
+                    "_links": {
+                        "self": "https://gitlab.secoder.net/api/v4/projects/469",
+                        "issues": "https://gitlab.secoder.net/api/v4/projects/469/issues",
+                        "merge_requests": "https://gitlab.secoder.net/api/v4/projects/469/merge_requests",
+                        "repo_branches": "https://gitlab.secoder.net/api/v4/projects/469/repository/branches",
+                        "labels": "https://gitlab.secoder.net/api/v4/projects/469/labels",
+                        "events": "https://gitlab.secoder.net/api/v4/projects/469/events",
+                        "members": "https://gitlab.secoder.net/api/v4/projects/469/members"
+                    },
+                    "packages_enabled": true,
+                    "empty_repo": false,
+                    "archived": false,
+                    "visibility": "private",
+                    "resolve_outdated_diff_discussions": false,
+                    "container_registry_enabled": true,
+                    "container_expiration_policy": {
+                        "cadence": "1d",
+                        "enabled": true,
+                        "keep_n": 10,
+                        "older_than": "90d",
+                        "name_regex": null,
+                        "name_regex_keep": null,
+                        "next_run_at": "2022-04-26T12:50:03.386Z"
+                    },
+                    "issues_enabled": true,
+                    "merge_requests_enabled": true,
+                    "wiki_enabled": true,
+                    "jobs_enabled": true,
+                    "snippets_enabled": true,
+                    "service_desk_enabled": false,
+                    "service_desk_address": null,
+                    "can_create_merge_request_in": true,
+                    "issues_access_level": "enabled",
+                    "repository_access_level": "enabled",
+                    "merge_requests_access_level": "enabled",
+                    "forking_access_level": "enabled",
+                    "wiki_access_level": "enabled",
+                    "builds_access_level": "enabled",
+                    "snippets_access_level": "enabled",
+                    "pages_access_level": "private",
+                    "emails_disabled": null,
+                    "shared_runners_enabled": true,
+                    "lfs_enabled": true,
+                    "creator_id": 1,
+                    "import_status": "none",
+                    "import_error": null,
+                    "open_issues_count": 2,
+                    "runners_token": "jJggsxmDvs_YNwfz5ZtV",
+                    "ci_default_git_depth": 50,
+                    "public_jobs": true,
+                    "build_git_strategy": "fetch",
+                    "build_timeout": 3600,
+                    "auto_cancel_pending_pipelines": "enabled",
+                    "build_coverage_regex": null,
+                    "ci_config_path": null,
+                    "shared_with_groups": [],
+                    "only_allow_merge_if_pipeline_succeeds": true,
+                    "allow_merge_on_skipped_pipeline": false,
+                    "request_access_enabled": true,
+                    "only_allow_merge_if_all_discussions_are_resolved": false,
+                    "remove_source_branch_after_merge": true,
+                    "printing_merge_request_link_enabled": true,
+                    "merge_method": "merge",
+                    "suggestion_commit_message": "",
+                    "auto_devops_enabled": false,
+                    "auto_devops_deploy_strategy": "continuous",
+                    "autoclose_referenced_issues": true,
+                    "permissions": {
+                        "project_access": {
+                            "access_level": 40,
+                            "notification_level": 3
+                        },
+                        "group_access": null
+                    }
+                }
+            }
+        }
+        ```
+
+#### 请求权限 
+项目管理员
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|repository|int/str|远程仓库ID|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|请求成功|
+|1|请求超时|
+
+#### 响应数据
+|字段|类型|说明|
+|status|int|远程仓库返回的HTTP状态码|
+|response|object|远程仓库返回的信息|
+
+
+
+### 同步记录查询
+<div class="grid cards" markdown>
+- <span>**[ GET ]** &nbsp;&nbsp; /rdts/repo_crawllog/</span>
+</div>
+
+用于查询远程仓库的同步记录。
+
+??? example "示例"
+    === "请求"
+        ```bash
+        curl https://example.com/rdts/repo_crawllog/?sessionId=Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74&repo=1&project=1&page=1
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": [
+                {
+                    "id": 124,
+                    "time": 1649840324.738104,
+                    "status": 200,
+                    "message": "",
+                    "request_type": "merge",
+                    "finished": true,
+                    "updated": false
+                },
+                {
+                    "id": 123,
+                    "time": 1649840304.765841,
+                    "status": 200,
+                    "message": "",
+                    "request_type": "commit",
+                    "finished": false,
+                    "updated": false
+                },
+                ...
+            ]
+        }
+        ```
+
+#### 请求权限 
+项目管理员
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|repo|int/str|仓库ID|
+|page|int/str|记录页码|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|查询成功|
+|1|查询失败，因为仓库不存在|
+
+#### 响应数据
+响应数据是一个数组，数组各字段如下
+
+|字段|类型|说明|
+|-|-|-|
+|id|int|同步ID|
+|time|float|同步开始时间，以秒计|
+|status|int|同步状态，以远程服务器的HTTP状态码表示|
+|message|int|错误信息，如果同步状态不为200，则记录远程服务器返回的错误信息|
+|request_type|str|同步内容，为 "merge" , "issue" 或 "commit"|
+|finished|bool|表示本次同步的内容是否已经处理完|
+|updated|bool|表示本次同步是否进行了更新，包括对已有记录的增加、修改、删除，不包括已有记录和SR, MR的匹配|
+
+!!! info "同步过程"
+    同步时会先向远程服务器逐页请求数据，然后处理服务器返回的数据
+
+    - 如果逐页请求的过程中出现了一次失败，则记录同步状态和出错信息，本次同步终止
+    - 如果逐页请求成功，则标记同步状态为200，finished=false，开始处理数据
+    - 所有数据处理结束后，finished=true，本次同步结束
+
+
 ## 数据分析
 
 ### 开发过程数据
@@ -227,11 +466,11 @@
         查询 `id` 为 `1` 的开发工程师在近1周内的开发情况，展示详情。
         ```json
         {
-            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
-            "project": 1,
-            "digest": false,
-            "dev_id": 1,
-            "limit": 604800
+            "project": 2,
+            "digest": true,
+            "dev_id": [17, 25],
+            "limit": 604800,
+            "sessionId": "b4RCDE7ovT5IMQrV2JnyC947JN8j8kD8"
         }
         ```
     === "响应 1"
@@ -239,14 +478,50 @@
         ```json
         {
             "code": 0,
-            "data": {
-                "mr_count": 3,
-                "commit_count": 12,
-                "additions": 1984,
-                "deletions": 647,
-                "issue_count": 5,
-                "issue_times": [39794, 191275, 63799, 151260, 83450]
-            }
+            "data": [
+                {
+                    "mr_count": 4,
+                    "commit_count": 19,
+                    "additions": 2500,
+                    "deletions": 709,
+                    "issue_count": 4,
+                    "issue_times": [
+                        522758,
+                        593099,
+                        2555,
+                        21833
+                    ],
+                    "commit_times": [
+                        1650339623,
+                        1650343097,
+                        1650343543,
+                        1650347507,
+                        1650347890,
+                        1650371087,
+                        1650371663
+                    ]
+                },
+                {
+                    "mr_count": 5,
+                    "commit_count": 11,
+                    "additions": 2742,
+                    "deletions": 392,
+                    "issue_count": 3,
+                    "issue_times": [
+                        635771,
+                        635800,
+                        150777
+                    ],
+                    "commit_times": [
+                        1650356448,
+                        1650377940,
+                        1650425209,
+                        1650425628,
+                        1650902311,
+                        1650902956
+                    ]
+                }
+            ]
         }
         ```
     === "响应 2"
@@ -379,4 +654,76 @@
 #### 响应数据
 |字段|类型|说明|
 |-|-|-|
-|bug_issues|array\[int\]|该迭代周期中所有被标记为bug的issue的详情，及其关联SR的相关信息|
+|bug_issues|array\[objects\]|该迭代周期中所有被标记为bug的issue的详情，及其关联SR的相关信息|
+
+### 同步记录查询
+<div class="grid cards" markdown>
+- <span>**[ GET ]** &nbsp;&nbsp; /rdts/repo_crawllog/</span>
+</div>
+
+用于查询远程仓库的同步记录。
+
+??? example "示例"
+    === "请求"
+        ```bash
+        curl https://example.com/rdts/repo_crawllog/?sessionId=Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74&repo=1&project=1&page=1
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": [
+                {
+                    "id": 124,
+                    "time": 1649840324.738104,
+                    "status": 401,
+                    "message": "401 Unauthorized",
+                    "request_type": "merge",
+                    "finished": false,
+                    "updated": false
+                    "is_webhook": false
+                },
+                {
+                    "id": 123,
+                    "time": 1649840304.765841,
+                    "status": 200,
+                    "message": "",
+                    "request_type": "commit",
+                    "finished": true,
+                    "updated": true,
+                    "is_webhook": true
+                },
+                ...
+            ]
+        }
+        ```
+
+#### 请求权限 
+项目管理员
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|repo|int/str|仓库ID|
+|page|int/str|记录页码|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|查询成功|
+|1|查询失败，因为仓库不存在|
+
+#### 响应数据
+响应数据是一个数组，数组各字段如下
+
+|字段|类型|说明|
+|-|-|-|
+|id|int|同步ID|
+|time|float|同步开始时间，以秒计|
+|status|int|同步状态，以远程服务器的HTTP状态码表示|
+|message|int|错误信息，如果同步状态不为200，则记录远程服务器返回的错误信息|
+|request_type|str|同步内容，为 "merge" , "issue" 或 "commit"|
+|finished|bool|表示本次同步的内容是否已经处理完|
+|updated|bool|表示本次同步是否进行了更新，包括对已有记录的增加、修改、删除，不包括已有记录和SR, MR的匹配|
+|is_webhook|bool|表明是否是webhook自动推送导致的同步|
