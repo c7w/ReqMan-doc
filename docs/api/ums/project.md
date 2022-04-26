@@ -461,7 +461,7 @@
 |-|-|
 |0|修改成功
 
-### 配置提取远端仓库信息的正则表达式
+### 配置提取远端信息的正则表达式
 <div class="grid cards" markdown>
 - <span>**[ POST ]** &nbsp;&nbsp; /ums/config_regex/</span>
 </div>
