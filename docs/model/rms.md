@@ -108,6 +108,10 @@
 |formerDescription|Text||变更之前 SR 的描述|
 |changedBy|ForeignKey([User](../user/#user))||更改 SR 的用户|
 |changedAt|Float||修改时间，默认修改当时的时间戳|
+|autoAdded|Boolean|表示该技术是否被自动添加|
+|autoAddCrawl|ForeignKey(CrawlLog)||表示是哪次同步触发了这个SR状态改变|
+|autoAddedTriggerType|CharField||表示是否何种同步导致状态改变，包括`commit`,`merge`, `issue`,`rollback`|
+|autoAddedTriggerValue|Integer|表示触发该状态改变的事件在在数据库中的 `id` ；如`Commit.id`,`Issue.id`等|
 
 
 ## 服务-功能需求关联模型 ServiceSRAssociation

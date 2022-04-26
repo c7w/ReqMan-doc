@@ -10,6 +10,7 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |id|BigAuto|主键|仓库ID|
+|url|Char|索引|表示仓库的URL，最长255字符|
 |project|ForeignKey([Project](../ums/#project))|索引|仓库的归属项目|
 |title |Text|索引|仓库名称，最长255字符|
 |description |Text ||仓库描述|
@@ -33,6 +34,7 @@
 |createAt|Float||提交记录的创建时间|
 |url|Text||提交记录的链接|
 |disabled |Boolean| |是否已删除，默认为False|
+|user_commiter|ForeignKey([User](../ums/#user))||关联提交者对应的本地用户|
 
 ## 合并请求模型 MergeRequest
 
@@ -52,6 +54,9 @@
 |reviewedAt|Float||复盘时间，可为空|
 |url|Text||合并请求的链接|
 |disabled |Boolean| |是否已删除，默认为False|
+
+|user_authored|ForeignKey([User](../ums/#user))||关联提出请求者对应的本地用户|
+|user_reviewed|ForeignKey([User](../ums/#user))||关联合并请求者对应的本地用户|
 
 ## 议题模型 Issue
 
@@ -73,6 +78,9 @@
 |disabled |Boolean| |是否已删除，默认为False|
 |labals|Text||议题的标签，使用 json 格式存储|
 |is_bug|Boolean||是否是缺陷相关议题，默认为 False|
+|user_assignee |ForeignKey([User](../ums/#user))||关联Issue的assignee对应的本地用户|
+|user_authored|ForeignKey([User](../ums/#user))||关联Issue的提出者对应的本地用户|
+|user_closed|ForeignKey([User](../ums/#user))||关联Issue的关闭者对应的本地用户|
 
 ## 提交记录-功能需求关联模型 CommitSRAssociation
 
