@@ -53,10 +53,14 @@ theme:
         name: Switch to light mode
 
 extra_javascript:
+  - 'https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js'
   - 'https://cdn.jsdelivr.net/npm/mathjax@2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+  - js/simpleLightbox.min.js
+  - js/extension.js
 
 extra_css:
   - style/extension.css
+  - style/simpleLightbox.min.css
 
 plugins:
   - search
