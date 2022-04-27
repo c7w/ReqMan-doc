@@ -116,3 +116,12 @@ Https 请求解析模块根据所分配请求的方法来进一步下分请求�
 ### MySql 数据库模块
 
 MySql 数据库模块提供后端所有模型的存储服务，完成各类数据的持久化存储。
+
+
+## 系统结构相关图示
+
+![系统结构图](https://s2.loli.net/2022/04/27/l5vKwrp7xI1YmEA.png)
+
+![序列图](https://s2.loli.net/2022/04/27/bRiw8sMBWLpV2lX.png)
+
+![数据流向](https://s2.loli.net/2022/04/27/vqli32QMTsJ4Dko.png)
