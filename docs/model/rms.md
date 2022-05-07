@@ -141,7 +141,7 @@
 
 其中，联合唯一(project,iteration)
 
-## 用户-功能需求关联模型 ProjectIterationAssociation
+## 用户-功能需求关联模型 UserSRAssociation
 
 |字段|类型|属性|说明|
 |-|-|-|-|
