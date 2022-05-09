@@ -101,4 +101,14 @@
 
 项目管理员可在 项目-> 项目成员 页面管理已有项目成员，可以编辑对应成员身份权限，不同身份权限信息参考[需求分析 - ReqMan Docs | 需求管理跟踪助手帮助文档 (secoder.net)](https://doc-undefined.app.secoder.net/analysis/#_4)
 
-## 
+## 项目合并管理
+
+本平台自动拉取远程仓库 Merge Request 来生成合并管理，可自动匹配功能需求。
+
+自动匹配条件：
+1. 功能需求名称为 'SR.xxx.xxx'，其中 'xxx' 部分为三位十进制数，例：'SR.006.818'
+2.远程仓库 Merge Request 合并请求信息标题为 '[SR.xxx.xxx]'，其中为需要匹配的功能需求的名称，例：'[SR.006.818] Merge Dev to Master'
+
+## 项目缺陷追踪管理
+
+项目中可以自动匹配远程仓库中代表缺陷的 Issue，需在远程仓库 Issue 页面添加标签为 bug。
