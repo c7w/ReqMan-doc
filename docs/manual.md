@@ -15,6 +15,7 @@
 ### 个人邮箱
 
 个人信息中包含两类邮箱：
+
 + 主邮箱
 + 其他邮箱
 
@@ -36,11 +37,13 @@
 
 ### 管理项目
 
-点击对应项目条目后可以进入到项目中，点击左侧 Side Bar 中项目设置可以管理项目基本信息。
+点击对应项目条目后可以进入到项目中，点击左侧 Side Bar 中**项目设置**可以管理项目基本信息。
 
 #### 项目邀请码
 
 每个项目自动生成项目邀请码，用于邀请本平台其他用户加入本项目。
+
+![image.png](https://s2.loli.net/2022/05/09/JUltGouM8YmLwZq.png){.img-fluid tag=2}
 
 #### 远程仓库管理
 
@@ -81,14 +84,17 @@
 
 以 GitLab 为例，在远程仓库的 项目设置 -> Webhooks 页面配置 Secret Token。
 
+![image.png](https://s2.loli.net/2022/05/09/YmUHkvQofjAxq82.png){.img-fluid tag=2}
+
 其中：
 
-+ URL 填入**https://backend-undefined.app.secoder.net/rdts/webhook/**
++ URL 填入 **https://backend-undefined.app.secoder.net/rdts/webhook/**
 + Secret Token 可在本平台配置完 Access Token 后复制，并填入 GitLab 对应位置
 
 ![image.png](https://s2.loli.net/2022/05/09/euk4Lrtg6WUXcRs.png){.img-fluid tag=2}
 
 本平台所需 Trigger 包含：
+
 + Push events
 + Issues events
 + Merge request events
