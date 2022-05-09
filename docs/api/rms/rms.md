@@ -243,7 +243,7 @@ updateData 内容说明：
         {
             "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
             "project": 1,
-            "type":"sr"，
+            "type":"SRState"，
             "operation":"update",
             "data":{
                  "id":1,
