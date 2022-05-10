@@ -31,7 +31,8 @@ nav:
     - tech.md
   - 测试文档:
     - test_doc.md
-
+  - 用户手册:
+    - manual.md
 
 # Site Configuration
 # Do not touch it unless you know what you are doing!
