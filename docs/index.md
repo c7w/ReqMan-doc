@@ -14,7 +14,9 @@
 
 除此之外，本管理系统的第一个客户也将是我们自己的开发项目，即本系统应能够实现对自身项目的管理、缺陷跟踪以及迭代开发。
 
-## 用户故事
+## 需求分析
+
+### 用户故事
 
 **系统工程师 小A**：我是一名系统工程师。在每一个项目中，我不仅负责和客户交流需求，也需要设计总体的架构方案。
 
@@ -45,12 +47,18 @@
 ![系统工程师.png](https://s2.loli.net/2022/05/11/bf6AQ8VDdut3ZOW.png){.img-fluid tag=1}
 
 <center>系统工程师用例图</center>
+
+
 ![开发工程师.png](https://s2.loli.net/2022/05/11/J3hp4GoAl2vxieO.png){.img-fluid tag=1}
 
 <center>开发工程师用例图</center>
+
+
 ![QA工程师.png](https://s2.loli.net/2022/05/11/JLb32V7rgmaq6cY.png){.img-fluid tag=1}
 
 <center>质量保证工程师用例图</center>
+
+
 *注：在以上三个图例中，橙色均代表该用户可以修改，而绿色代表仅支持查看。
 
 ### 泳道图流程展示
