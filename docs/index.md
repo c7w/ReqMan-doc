@@ -40,6 +40,28 @@
 
 除此之外，我发现 Git 上并没有对很多 issue 信息，MR 信息进行很好的可视化呈现，这就让我的宏观数据分析变得异常繁琐。因此我还希望平台能够提供可视化的 issue 交付质量，MR 及代码行数等相关自动化统计结果，以便于对工程师进行评价（快速抓住谁在摸鱼哦）。
 
+### 用户用例图
+
+![系统工程师.png](https://s2.loli.net/2022/05/11/bf6AQ8VDdut3ZOW.png)
+
+<center>系统工程师用例图</center>
+
+![开发工程师.png](https://s2.loli.net/2022/05/11/J3hp4GoAl2vxieO.png)
+
+<center>开发工程师用例图</center>
+
+![QA工程师.png](https://s2.loli.net/2022/05/11/JLb32V7rgmaq6cY.png)
+
+<center>质量保证工程师用例图</center>
+
+*注：在以上三个图例中，橙色均代表该用户可以修改，而绿色代表仅支持查看。
+
+### 泳道图流程展示
+
+![项目泳道图.png](https://s2.loli.net/2022/05/11/Oj6ISFzxigCkL7E.png)
+
+<center>流程泳道图</center>
+
 ## 需求清单
 
 ### 需求表
