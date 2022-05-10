@@ -29,6 +29,9 @@ nav:
     - RDTS模型: model/rdts.md
   - 技术选型与部署:
     - tech.md
+  - 测试文档:
+    - test_doc.md
+
 
 # Site Configuration
 # Do not touch it unless you know what you are doing!
