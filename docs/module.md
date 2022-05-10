@@ -141,11 +141,9 @@ MySql 数据库模块提供后端所有模型的存储服务，完成各类数�
 ![系统结构图](https://s2.loli.net/2022/04/27/l5vKwrp7xI1YmEA.png){.img-fluid tag=2 title='系统结构图'}
 
 <center>系统结构图</center>
-
 ![序列图](https://s2.loli.net/2022/04/27/bRiw8sMBWLpV2lX.png){.img-fluid tag=2 title="序列图"}
 
 <center>序列图</center>
-
 ![数据流向图](https://s2.loli.net/2022/04/27/vqli32QMTsJ4Dko.png){.img-fluid tag=2 title="数据流向图"}
 
 <center>数据流向图</center>

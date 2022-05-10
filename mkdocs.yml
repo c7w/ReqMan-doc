@@ -29,6 +29,8 @@ nav:
     - RDTS模型: model/rdts.md
   - 技术选型与部署:
     - tech.md
+  - 测试文档:
+    - test_doc.md
   - 用户手册:
     - manual.md
 
