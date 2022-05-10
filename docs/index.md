@@ -44,23 +44,19 @@
 
 ### 用户用例图
 
-![系统工程师.png](https://s2.loli.net/2022/05/11/bf6AQ8VDdut3ZOW.png){.img-fluid tag=1}
+![系统工程师 _1_.png](https://s2.loli.net/2022/05/11/XPSf8kUuwbHaTpo.png){.img-fluid tag=1}
 
 <center>系统工程师用例图</center>
 
 
-![开发工程师.png](https://s2.loli.net/2022/05/11/J3hp4GoAl2vxieO.png){.img-fluid tag=1}
+![开发工程师 _2_.png](https://s2.loli.net/2022/05/11/Ew7RhXBQ6x18KjS.png){.img-fluid tag=1}
 
 <center>开发工程师用例图</center>
 
 
-![QA工程师.png](https://s2.loli.net/2022/05/11/JLb32V7rgmaq6cY.png){.img-fluid tag=1}
+![QA工程师.png](https://s2.loli.net/2022/05/11/b7c1eJmUF8D6jTv.png){.img-fluid tag=1}
 
 <center>质量保证工程师用例图</center>
-
-
-*注：在以上三个图例中，橙色均代表该用户可以修改，而绿色代表仅支持查看。
-
 ### 泳道图流程展示
 
 ![项目泳道图.png](https://s2.loli.net/2022/05/11/Oj6ISFzxigCkL7E.png){.img-fluid tag=1}
@@ -91,7 +87,7 @@
 | [IR.017]       | 质量保证工程师 支持 查看 基于 issue 的需求交付质量分析       | Sprint 3 |
 | [IR.018]       | 质量保证工程师 支持 查看基于 MR 数量、代码行数的开发工程师活跃度 | Sprint 3 |
 | [IR.019]       | 质量保证工程师 支持 查看基于 issue 解决时间的开发工程师能力评价 | Sprint 3 |
-| [IR.020]       | 质量保证工程师 支持 查看代码自动分析结果（代码片段对应的功能需求） | 未开始   |
+| [IR.020]       | 质量保证工程师 支持 查看代码自动分析结果（代码片段对应的功能需求） | Sprint 4 |
 | &lt;IR.021&gt; | 所有用户 支持 注册，注册信息包含用户名，密码，角色           | Sprint 1 |
 | &lt;IR.022&gt; | 所有用户 支持 修改密码、经负责人同意后修改角色               | Sprint 2 |
 | &lt;IR.023&gt; | 所有用户 认证后才可操作                                      | Sprint 1 |
@@ -102,7 +98,7 @@
 | [IR.028]       | 其它 支持 角色更改导致的需求回退                             | Sprint 4 |
 | [IR.029]       | 其它 支持 开发过程需求更改                                   | Sprint 4 |
 | [IR.030]       | 其它 支持 开发过程需求更改                                   | Sprint 4 |
-| [IR.031]       | 使用自己的项目管理项目开发过程                               | 管理中   |
+| [IR.031]       | 使用自己的项目管理项目开发过程                               |          |
 
 *注：`<·>` 表示必做，`[·]` 表示选做
 
@@ -147,45 +143,7 @@
 
 ## 开发甘特图
 
-```mermaid
-gantt	
-	title ReqMan
-	todayMarker off
-section Sys
-IR.001: 2022-03-24, 14d
-IR.002: 2022-03-24, 14d
-IR.003: 2022-03-24, 14d
-IR.004: 2022-03-24, 14d
-IR.005: 2022-03-24, 14d
-IR.006: 2022-03-24, 14d
-section Dev
-IR.007: 2022-03-24, 14d
-IR.008: 2022-03-24, 14d
-IR.009: 2022-04-07, 14d
-section QA
-IR.010: 2022-04-07, 14d
-IR.011: 2022-04-07, 14d
-IR.012: 2022-04-07, 14d
-IR.013: 2022-04-07, 14d
-IR.014: 2022-04-07, 14d
-IR.015: 2022-04-07, 14d
-IR.016: 2022-04-07, 14d
-IR.017: 2022-04-07, 14d
-IR.018: 2022-04-07, 14d
-IR.019: 2022-04-07, 14d
-section All
-IR.021: 2022-03-10, 14d
-IR.022: 2022-03-24, 14d
-IR.023: 2022-03-10, 14d
-IR.024: 2022-03-10, 14d
-IR.025: 2022-03-10, 14d
-IR.026: 2022-04-07, 14d
-IR.027: 2022-04-07, 14d
-IR.028: 2022-04-21, 14d
-IR.029: 2022-04-21, 14d
-IR.030: 2022-04-21, 14d
-IR.031: 2022-04-21, 14d
-SMTP:  2022-04-07, 14d
-Webhooks:  2022-04-07, 14d
-```
+![image.png](https://s2.loli.net/2022/05/11/VrzPO5gtlU2FWse.png){.img-fluid tag=1}
+
+<center>开发甘特图</center>
 

@@ -5,8 +5,6 @@ site_name: ReqMan Docs | 需求管理跟踪助手帮助文档
 nav:
   - ReqMan:
     - index.md
-  - 需求分析:
-    - analysis.md
   - 模块设计:
     - module.md
   - API 文档:
