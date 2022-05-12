@@ -61,18 +61,13 @@
   ![image.png](https://s2.loli.net/2022/05/08/BxtXnJ7hYl2GSy3.png){.img-fluid tag=1}
 
   <center>新建功能需求图示</center>
-
-  添加完若干功能需求后，点击左侧“原始需求管理”一栏，选择目标原始需求，点击该行右侧“关联功能需求”，即会显示功能需求关联列表对话框。点击选中目标原始需求希望关联的功能需求，再点击确定即可实现关联，完成原始需求向功能需求的分解。
-
-  ![image.png](https://s2.loli.net/2022/05/08/5ZUWgAuFC9fwt2S.png){.img-fluid tag=1}
-
-  <center>关联功能需求图示</center>
-
-  特别的，系统支持根据功能需求标题以及状态对功能需求进行筛选。二者均支持文本搜索式筛选，方便用户对功能需求进行快速锁定。
+添加完若干功能需求后，点击左侧“原始需求管理”一栏，选择目标原始需求，点击该行右侧“关联功能需求”，即会显示功能需求关联列表对话框。在上方多选框中，可以选择希望关联到的功能需求，进行勾选后确定即可。
   
-  ![image.png](https://s2.loli.net/2022/05/08/myCZckSwGJoXYM2.png){.img-fluid tag=1}
+![image.png](https://s2.loli.net/2022/05/12/NStITOB95uJUjGA.png){.img-fluid tag=1}
   
-  <center>功能需求筛选图示</center>
+<center>关联功能需求图示</center>
+  特别的，系统支持根据功能需求标题以及状态对已关联的功能需求进行筛选。二者均支持文本搜索式筛选，方便用户对希望找到的功能需求进行快速锁定。
+
 
 ### 4. IR.004
 
@@ -101,8 +96,7 @@
   ![image.png](https://s2.loli.net/2022/05/10/wfFx91WzieDbM6H.png){.img-fluid tag=1}
 
   <center>新建迭代周期图示</center>
-
-  之后在项目界面点击左侧“功能需求管理”一栏，选择需要添加迭代的目标功能需求。之后点击该行右侧“编辑”，即会显示出编辑功能需求对话框。之后点击迭代选择，即可选择目标功能需求希望关联到的开发迭代。注意一个功能需求支持关联多个不同的开发迭代。
+之后在项目界面点击左侧“功能需求管理”一栏，选择需要添加迭代的目标功能需求。之后点击该行右侧“编辑”，即会显示出编辑功能需求对话框。之后点击迭代选择，即可选择目标功能需求希望关联到的开发迭代。注意一个功能需求支持关联多个不同的开发迭代。
   
   ![image.png](https://s2.loli.net/2022/05/08/zATloy6mfJOKnZa.png){.img-fluid tag=1}
   
@@ -121,10 +115,9 @@
   ![image.png](https://s2.loli.net/2022/05/09/B3RC7h8q46mJtHS.png){.img-fluid tag=1}
 
   <center>系统工程师指定迭代负责人图示</center>
-
-  除此之外，在实现中系统对该功能的粒度还进行了进一步细化，可以以每条功能需求为最小单元，指定开发负责人。
-
-  以系统工程师的身份进入系统，选择要进入的项目，之后在项目界面点击左侧“功能需求管理”一栏，选择需要添加开发负责人的目标功能需求。之后点击该行右侧“编辑”，即会显示出编辑功能需求对话框。之后点击指定负责人，即可选择目标功能需求希望指定的负责人。注意每个功能需求仅能有一名负责人，且该负责人须在同一项目中（即只能在该项目的成员列表中进行选择，不可手动随意添加）。
+除此之外，在实现中系统对该功能的粒度还进行了进一步细化，可以以每条功能需求为最小单元，指定开发负责人。
+  
+以系统工程师的身份进入系统，选择要进入的项目，之后在项目界面点击左侧“功能需求管理”一栏，选择需要添加开发负责人的目标功能需求。之后点击该行右侧“编辑”，即会显示出编辑功能需求对话框。之后点击指定负责人，即可选择目标功能需求希望指定的负责人。注意每个功能需求仅能有一名负责人，且该负责人须在同一项目中（即只能在该项目的成员列表中进行选择，不可手动随意添加）。
   
   ![image.png](https://s2.loli.net/2022/05/08/oFimc5217wQpWJ3.png){.img-fluid tag=1}
   
@@ -138,24 +131,21 @@
 
 * 测试方法：
 
-  以开发程师的身份进入系统，选择要进入的项目，之后在项目界面点击左侧“需求查看”一栏，即可查看当前所有的原始需求，功能需求以及二者间的关联关系（点击每条原始需求左侧“+”即可展开对应的功能需求列表）。
+  以开发程师的身份进入系统，选择要进入的项目，之后在项目界面点击左侧“需求查看”一栏，即可查看当前所有的原始需求，功能需求以及二者间的关联关系。
 
-  在每一条功能需求中，可以看到关联迭代以及负责人等相关信息。
+  除此之外，进入功能需求管理以及原始需求管理界面，在每一条需求中，可以看到关联迭代以及负责人等相关信息。
 
-  ![image.png](https://s2.loli.net/2022/05/08/CB4J2zatneEpOgQ.png){.img-fluid tag=1}
+  ![image.png](https://s2.loli.net/2022/05/12/GjoTR9DCZzas6k4.png){.img-fluid tag=1}
 
   <center>需求列表界面图示</center>
-
-  特别的，为了更便捷地展示详细信息，在每一条功能需求与原始需求处，点击标题即可弹出对应的功能需求或原始需求卡片；此外，点击每条原始需求的创建者头像，或者功能需求的负责人头像，均可查看该创建者或负责人的详细信息。
-
-  ![image.png](https://s2.loli.net/2022/05/08/Qyo6nUzt8HkIgT7.png){.img-fluid tag=1}
-
-  <center>功能需求卡片图示</center>
+特别的，为了更便捷地展示详细信息，在每一条功能需求与原始需求处，点击标题即可弹出对应的功能需求或原始需求卡片；此外，点击每条原始需求的创建者头像，或者功能需求的负责人头像，均可查看该创建者或负责人的详细信息。
   
+![image.png](https://s2.loli.net/2022/05/08/Qyo6nUzt8HkIgT7.png){.img-fluid tag=1}
+  
+<center>功能需求卡片图示</center>
   ![image.png](https://s2.loli.net/2022/05/08/sbpfUXMJhrcOWlm.png){.img-fluid tag=1}
   
   <center>原始需求卡片图示</center>
-  
   ![image.png](https://s2.loli.net/2022/05/08/S1fvmTOpNshaAzK.png){.img-fluid tag=1}
   
   <center>个人信息卡片图示</center>
@@ -173,7 +163,6 @@
   ![image.png](https://s2.loli.net/2022/05/08/2sgpUxDwWSCeRBK.png){.img-fluid tag=1}
 
   <center>开发工程师修改功能需求状态图示</center>
-  
   此外，本系统已实现了基于关联仓库的功能状态自动更新，无需开发工程师手动在系统中手动修改，也可以实现自动更新与状态转变。在 IR.009 中将详细阐述。
 
 ### 9. IR.009
@@ -212,8 +201,7 @@
   ![image.png](https://s2.loli.net/2022/05/10/Iz1fVlunKCtwHpB.png){.img-fluid tag=1}
 
   <center>迭代周期界面图示</center>
-
-  此外，点击左侧“需求查看”一栏，亦可查看所有需求状态与交付情况，与开发工程师类似，在此不再赘述。
+此外，点击左侧“需求查看”一栏，亦可查看所有需求状态与交付情况，与开发工程师类似，在此不再赘述。
 
 ### 11. IR.011
 
@@ -228,8 +216,7 @@
   ![image.png](https://s2.loli.net/2022/05/08/Jba2qKVtnMQR47L.png){.img-fluid tag=1}
 
   <center>项目合并请求界面图示</center>
-
-  特别的，点击具体的每条合并请求，可以通过合并请求卡片查看详细信息。
+特别的，点击具体的每条合并请求，可以通过合并请求卡片查看详细信息。
   
   ![image.png](https://s2.loli.net/2022/05/08/bwY9OtWVaI8xoRP.png){.img-fluid tag=1}
   
@@ -314,7 +301,6 @@
   ![image.png](https://s2.loli.net/2022/05/09/Cn5gJhrAEXjcp4z.png){.img-fluid tag=1}
 
   <center>交付后缺陷分析图示</center>
-  
   该图中反应了每个迭代中的功能需求数量，问题数量以及错误率，能够直观展现出功能需求交付质量，方便质量保证工程师进行统计分析。特别的，鼠标移至每个迭代上方区域可以显示具体定量信息。
 
 ### 18. IR.018
@@ -330,11 +316,9 @@
   ![image.png](https://s2.loli.net/2022/05/09/iZsgOb78DPXe1Nx.png){.img-fluid tag=1}
 
   <center>开发工程师活跃度分析（周）图示</center>
-
-  ![image.png](https://s2.loli.net/2022/05/09/4jkyIKPZi2vJMTA.png){.img-fluid tag=1}
+![image.png](https://s2.loli.net/2022/05/09/4jkyIKPZi2vJMTA.png){.img-fluid tag=1}
   
   <center>开发工程师活跃度分析（总）图示</center>
-  
   两张图表均为饼图形式的数据汇总，分别为项目中每位开发工程师的 MR 数量统计以及代码行数统计。通过这些信息质量保证工程师可以直观查看每位开发工程师的活跃度。特别的，鼠标移至饼图区域上方可以显示具体定量信息。
 
 ### 19. IR.019
@@ -350,11 +334,9 @@
   ![image.png](https://s2.loli.net/2022/05/09/rWJP125pGElayjO.png){.img-fluid tag=1}
 
   <center>开发工程师基于Issue解决时间的能力评定（周）图示</center>
-
-  ![image.png](https://s2.loli.net/2022/05/09/qCO3HeWTi8Fzx1N.png){.img-fluid tag=1}
+![image.png](https://s2.loli.net/2022/05/09/qCO3HeWTi8Fzx1N.png){.img-fluid tag=1}
   
   <center>开发工程师基于Issue解决时间的能力评定（总）图示</center>
-  
   这两张图表均为 box-plot 数据汇总，通过开发用时以及方差等等相关定性与定量信息，可以反映出每位开发工程师对于 issue 的处理能力，便于质量保证工程师进行评价。特别的，鼠标移至对应轴区域上方可以显示具体平均用时定量信息。
 
 ### 20. IR.020
@@ -370,7 +352,6 @@
   ![image.png](https://s2.loli.net/2022/05/10/PJeAi8CvzNFLSpZ.png){.img-fluid tag=1}
 
   <center>代码自动分析页面图示</center>
-  
   质量保证工程师可以查看项目中具体每行代码的作者以及变更日期等信息，方便进行审查与核对。代码自动分析结果为与远程仓库对接后的直观展现，可实时查看更新。
 
 ### 21. IR.021
@@ -386,13 +367,11 @@
   ![image.png](https://s2.loli.net/2022/05/09/krPA4YxSRUpmy7E.png){.img-fluid tag=1}
 
   <center>项目首页界面图示</center>
-
-  如果已注册账号，可以直接进行登录。若未注册账号，则点击左下方“创建新账户”进入账号创建界面。
-
-  ![image.png](https://s2.loli.net/2022/05/09/1o4zMcGdKrPxh2u.png){.img-fluid tag=1}
-
-  <center>项目登录界面图示</center>
+如果已注册账号，可以直接进行登录。若未注册账号，则点击左下方“创建新账户”进入账号创建界面。
   
+![image.png](https://s2.loli.net/2022/05/09/1o4zMcGdKrPxh2u.png){.img-fluid tag=1}
+  
+<center>项目登录界面图示</center>
   在界面中可按照要求进行注册，若不符合相关规范则会显示如下等报错信息。其中项目邀请码部分非必须填写，仅当以某种身份被管理员邀请时才需要填写，以迅速成为项目中角色加入项目。在注册成功后，系统将直接跳转至日程界面。
   
   ![image.png](https://s2.loli.net/2022/05/09/GsKnSdqNRDJ23tz.png){.img-fluid tag=1}
@@ -412,10 +391,9 @@
   ![image.png](https://s2.loli.net/2022/05/09/YK47m5GDurnPAzl.png){.img-fluid tag=1}
 
   <center>个人设置界面图示</center>
-
-  对于角色修改，本系统的的设置为仅有项目管理员可以修改项目中各个成员的角色。
-
-  请以项目管理员的身份进入系统，选择要进入的项目，之后在项目界面点击左侧“项目成员”一栏，即可对每位成员进行编辑，实现对项目成员身份的切换。
+对于角色修改，本系统的的设置为仅有项目管理员可以修改项目中各个成员的角色。
+  
+请以项目管理员的身份进入系统，选择要进入的项目，之后在项目界面点击左侧“项目成员”一栏，即可对每位成员进行编辑，实现对项目成员身份的切换。
   
   ![image.png](https://s2.loli.net/2022/05/09/AfjcIe4LT7tmCyU.png){.img-fluid tag=1}
   
@@ -467,7 +445,9 @@
 
 * 测试方法：
 
-  可以添加远程 pytorh 仓库（或其他开源的大型仓库等）对系统性能进行测试，观察每个页面的响应时间与情况等进行评估。
+  可以添加远程 pytorch 仓库（或其他开源的大型仓库等）对系统性能进行测试，观察每个页面的响应时间与情况等进行评估。
+  
+  我们已经专为测试创建好了该项目，在项目 dev 分支当中（https://frontend-dev-undefined.app.secoder.net/）可以加入 pytorch 项目（项目邀请码：MA32SI6F，在“我的项目”界面点击“加入项目”后输入即可）。在这个项目中，我们与 pytorch 开源仓库已经进行了关联，现在项目中共有 1k 条原始需求，20k 条功能需求，以及 60k+ 条贡献记录，可用于进行性能测试。目前该项目中各个页面加载均正常。
 
 ### 27. IR.027
 
@@ -522,27 +502,22 @@
   ![image.png](https://s2.loli.net/2022/05/09/JOIAEFzwDdaXl8p.png){.img-fluid tag=1}
 
   <center>Commit数量统计表图示</center>
-
-  ![image.png](https://s2.loli.net/2022/05/09/tsOLCnBAkIDhZXH.png){.img-fluid tag=1}
-
-  <center>MR数量统计表图示</center>
-
+![image.png](https://s2.loli.net/2022/05/09/tsOLCnBAkIDhZXH.png){.img-fluid tag=1}
+  
+<center>MR数量统计表图示</center>
   Commit 与 MR 数量统计表反应了二者随时间推移的增长趋势，能够帮助质量保证工程师更好地对项目完成度以及各个时间段推进情况进行宏观把握。
 
   ![image.png](https://s2.loli.net/2022/05/09/3aYmGjJs72Fi4hD.png){.img-fluid tag=1}
 
   <center>代码变化行数分段计数柱状图图示</center>
-
-  代码行数变化统计反应了每次 Commit 的代码行数变化情况，能够更直观地反应每次 Commit 中修改行数是否合理，Commit 是否及时，方便质量保证工程师进行评估。
+代码行数变化统计反应了每次 Commit 的代码行数变化情况，能够更直观地反应每次 Commit 中修改行数是否合理，Commit 是否及时，方便质量保证工程师进行评估。
   
-  ![image.png](https://s2.loli.net/2022/05/09/yIsFPdnGW9JO4jx.png){.img-fluid tag=1}
+![image.png](https://s2.loli.net/2022/05/09/yIsFPdnGW9JO4jx.png){.img-fluid tag=1}
   
   <center>个人提交次数统计柱状图表图示</center>
-  
   ![image.png](https://s2.loli.net/2022/05/09/B9k34DVX7cOMYfG.png){.img-fluid tag=1}
   
   <center>个人提交信息长度分布盒须图图示</center>
-  
   个人提交代码行数统计能够一定程度上反映出开发工程师工作量，方便质量管理工程师进行考核与跟进。个人提交信息长度统计了每次 Commit 中开发工程师提交的代码更改行数，能够直观反映出每次修改是否合理及符合规范。
 
 ### 31. IR.031
@@ -562,11 +537,9 @@
   ![image.png](https://s2.loli.net/2022/05/09/4ilXoRWwUOf1tAI.png){.img-fluid tag=1}
 
   <center>管理系统项目功能需求列表图示</center>
-
-  ![image.png](https://s2.loli.net/2022/05/09/aosGZNx5BLJPStz.png){.img-fluid tag=1}
+![image.png](https://s2.loli.net/2022/05/09/aosGZNx5BLJPStz.png){.img-fluid tag=1}
   
   <center>管理系统项目用户卡片图示</center>
-  
   ![image.png](https://s2.loli.net/2022/05/09/64Eeai79R5jYBGF.png){.img-fluid tag=1}
   
   <center>管理系统项目合并请求卡片图示</center>
@@ -588,13 +561,11 @@
   ![image.png](https://s2.loli.net/2022/05/09/wjHY5ur9nRS1qci.png){.img-fluid tag=1}
 
   <center>找回密码邮件内容图示</center>
-
-  点击之后即可进入密码重置界面，输入新的密码，即可完成密码修改。再次用新密码进行登录即可顺利登入系统。
-
-  ![image.png](https://s2.loli.net/2022/05/09/T6Yov9crkbZVG3A.png){.img-fluid tag=1}
+点击之后即可进入密码重置界面，输入新的密码，即可完成密码修改。再次用新密码进行登录即可顺利登入系统。
+  
+![image.png](https://s2.loli.net/2022/05/09/T6Yov9crkbZVG3A.png){.img-fluid tag=1}
   
   <center>重置密码界面图示</center>
-  
   该需求虽然不在原始需求当中，但是考虑到作为系统平台的一项基本功能，有必要进行平台支持。
 
 ### 3. 用户信息界面（用户友好）
@@ -604,7 +575,6 @@
   ![image.png](https://s2.loli.net/2022/05/09/roT7bCND9SnmF3Y.png){.img-fluid tag=1}
 
   <center>用户友好的个人信息界面图示</center>
-
-  用户之间互相了解是高效合作的前提，而用户信息界面能够让开发人员更好的看到相互之间的动态，便于更好地交流与合作。
+用户之间互相了解是高效合作的前提，而用户信息界面能够让开发人员更好的看到相互之间的动态，便于更好地交流与合作。
   
   
