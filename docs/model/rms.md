@@ -54,7 +54,7 @@
 |title |Char |索引|功能需求名称，最长255字符|
 |description |Text ||功能需求描述|
 |priority|Int ||功能需求的优先级|
-|rank|Int||功能需求的优先级|
+|rank|Int||功能需求的序|
 |IR|ManyToMany||关联的IR|
 |state|Text||功能需求的状态，包含`TODO`, `WIP`, `Done`, `Reviewing`|
 |disabled |Boolean| |是否删除，默认为False|
