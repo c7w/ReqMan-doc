@@ -15,10 +15,12 @@ nav:
       - 项目管理接口: api/ums/project.md
     - RMS模块:
       - api/rms/index.md
-      - RMS模块接口: api/rms/rms.md
+      - RMS 基础模块接口: api/rms/rms.md
+      - RMS 关联查询接口: api/rms/query.md
     - RDTS模块:
       - api/rdts/index.md
-      - RDTS模型操作接口: api/rdts/rdts.md
+      - RDTS 基础模块接口: api/rdts/rdts.md
+      - RDTS 分页查询接口: api/rdts/page.md
       - 远程仓库和开发数据: api/rdts/remote.md
   - 模型文档:
     - model/index.md

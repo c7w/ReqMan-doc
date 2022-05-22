@@ -226,11 +226,6 @@
         {
             "code": 0,
             "data": {
-                "schedule": {
-                    "done": [],
-                    "wip": [],
-                    "todo": []
-                },
                 "user": {
                     "id": 1,
                     "name": "c7w",
@@ -264,12 +259,10 @@
 |0|获取用户信息成功|
 
 #### 响应数据
-!!! todo 
-    先意思一下，等schedule属性实现了一块儿写。
-!!! bug
-    中间某个版本实现时误将avatar放到了data的下面而不是user的下面，后续考虑移除。（示例响应已经移除，但目前dev分支在两个地方都加了用户avatar）
-
-
+|字段|类型|说明|
+|-|-|-|
+|user|object|用户信息|
+|projects|array|用户对应的项目信息|
 
 
 
@@ -719,10 +712,9 @@ sequenceDiagram
     === "请求"
         ```json
         {
-            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
-            "remote_name": "Btlmd",
-            "repo": 1,
-            "project": 1
+            "url": "gitlab.secoder.net",
+            "remote_name": "username",
+            "sessionId": "f4wIl1q03HntE5Mr36MO4WeqfMITWH4Q"
         }
         ```
     === "响应"
@@ -738,7 +730,7 @@ sequenceDiagram
 |参数|类型|说明|
 |-|-|-|
 |remote_name|str|用户在远程仓库中的用户名|
-|repo|str/int|远程仓库id|
+|url|str/int|远程URL|
 |project|str/int|仓库所在项目id|
 
 #### 响应状态

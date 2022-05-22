@@ -410,7 +410,7 @@
         {
             "project": 2,
             "digest": true,
-            "dev_id": [17, 25],
+            "dev_id": [17],
             "limit": 604800,
             "sessionId": "b4RCDE7ovT5IMQrV2JnyC947JN8j8kD8"
         }
@@ -423,9 +423,9 @@
             "data": [
                 {
                     "mr_count": 4,
-                    "commit_count": 19,
-                    "additions": 2500,
-                    "deletions": 709,
+                    "commit_count": 3,
+                    "additions": 27,
+                    "deletions": 9,
                     "issue_count": 4,
                     "issue_times": [
                         522758,
@@ -436,31 +436,18 @@
                     "commit_times": [
                         1650339623,
                         1650343097,
-                        1650343543,
-                        1650347507,
-                        1650347890,
-                        1650371087,
-                        1650371663
-                    ]
-                },
-                {
-                    "mr_count": 5,
-                    "commit_count": 11,
-                    "additions": 2742,
-                    "deletions": 392,
-                    "issue_count": 3,
-                    "issue_times": [
-                        635771,
-                        635800,
-                        150777
+                        1650343543
                     ],
-                    "commit_times": [
-                        1650356448,
-                        1650377940,
-                        1650425209,
-                        1650425628,
-                        1650902311,
-                        1650902956
+                    "commit_lines" :[
+                        10,
+                        17,
+                        9
+                    ]
+                    "mr_times": [
+                        1650339623,
+                        1650343097,
+                        1650343543,
+                        1650343643
                     ]
                 }
             ]
@@ -474,33 +461,45 @@
             "data": {
                 "merges": [
                     {
-                        "id": 4,
-                        "merge_id": 34,
-                        "title": "[SR.003.604.F] Merge: modify password, upload avatar (#34)",
-                        "url": "https://gitlab.secoder.net/undefined/backend/-/merge_requests/34",
-                        "repo": "backend"
+                        "id": 784,
+                        "merge_id": 153,
+                        "title": "[SR.007.142] Exceptions in Issue List (#143)",
+                        "description": "",
+                        "repo": 2,
+                        "state": "merged",
+                        "url": "https://gitlab.secoder.net/undefined/frontend/-/merge_requests/153",
+                        "authoredAt": 1652523915.308,
+                        "reviewedAt": 1652524661.758,
+                        "user_authored": 1,
+                        "user_reviewed": 1
                     }
                 ],
                 "commits": [
                     {
-                        "id": 203,
-                        "hash_id": "8fbe227a8a37a4fe2c41f07a1e2d09c1b3086667",
-                        "message": "[SR.004.605.I] Disabled unfinished modules (#52)\n",
-                        "createdAt": 1649511580.0,
-                        "url": "https://gitlab.secoder.net/undefined/backend/-/commit/8fbe227a8a37a4fe2c41f07a1e2d09c1b3086667",
-                        "additions": 15
-                        "deletions": 46
-                        "repo": "backend"
+                        "id": 162831,
+                        "hash_id": "1295d142505610da63d81aca096c87214df94d9a",
+                        "repo": 5,
+                        "title": "[SR.007.140.I] catch router return fallback (#141)",
+                        "createdAt": 1652502272.0,
+                        "user_committer": 17,
+                        "additions": 86,
+                        "deletions": 79
                     }
                 ],
                 "issues": [
                     {
-                        "id": 1,
-                        "issue_id": 39,
-                        "title": "[SR.003.609] 检修 Schedule Task",
-                        "authoredAt": 1648569415.762,
-                        "closedAt": 1648609209.383,
-                        "repo": "backend"
+                        "id": 5831,
+                        "issue_id": 141,
+                        "repo": 5,
+                        "title": "[SR.007.140] Bugfix: SRList",
+                        "description": "",
+                        "state": "closed",
+                        "authoredAt": 1652496799.741,
+                        "closedAt": 1652517983.375,
+                        "url": "https://gitlab.secoder.net/undefined/frontend/-/issues/141",
+                        "user_assignee": 17,
+                        "user_authored": 17,
+                        "user_closed": 1
                     }
                 ],
 
@@ -509,7 +508,7 @@
         ```
 
 #### 请求权限 
-项目管理员，质保工程师
+项目成员
 
 #### 请求参数
 |参数|类型|说明|
@@ -816,6 +815,7 @@
 #### 响应数据
 |字段|类型|说明|
 |-|-|-|
-|http_status|int|远程仓库返回的http状态码|
-|body|object|远程仓库返回内容的转发|
+|relationship|array|代码块及从代码块到 SR 和 commit 的映射关系|
+|SR|array|代码块中涉及的 SR 信息|
+|Commits|array|代码块中涉及的 commit 信息|
 
