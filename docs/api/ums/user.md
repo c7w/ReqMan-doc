@@ -6,9 +6,11 @@
 </style>
 
 # 用户账户接口
+
 !!! warning 
     不加特殊说明，所有请求都需要有 `sessionId` 字段。
-    如果你发现请求的状态码为负数，请参见[权限约定](index.md#_1)
+
+    [权限约定](../ums/index.md#_1)中所提及的状态码在本节不再重复。
 
 ## 用户注册 
 ### 注册接口
@@ -211,9 +213,6 @@
 - UMS中的账户信息，如用户名，邮箱，头像等等
 - RMS中的任务信息，如计划表。
 
-!!! todo
-    此接口尚未完全实现
-
 ??? example "示例"
     === "请求"
         ```bash 
@@ -224,11 +223,6 @@
         {
             "code": 0,
             "data": {
-                "schedule": {
-                    "done": [],
-                    "wip": [],
-                    "todo": []
-                },
                 "user": {
                     "id": 1,
                     "name": "c7w",
@@ -262,12 +256,10 @@
 |0|获取用户信息成功|
 
 #### 响应数据
-!!! todo 
-    先意思一下，等schedule属性实现了一块儿写。
-!!! bug
-    中间某个版本实现时误将avatar放到了data的下面而不是user的下面，后续考虑移除。（示例响应已经移除，但目前dev分支在两个地方都加了用户avatar）
-
-
+|字段|类型|说明|
+|-|-|-|
+|user|object|用户信息|
+|projects|array|用户对应的项目信息|
 
 
 
@@ -428,7 +420,6 @@ sequenceDiagram
             "email": "joshua@btlmd.com"，
             "op": "modify",
             "type": "major"
-
         }
         ```
     === "响应"
@@ -467,7 +458,6 @@ sequenceDiagram
             "email": "joshua@btlmd.com"，
             "op": "verify",
             "type": "major"
-
         }
         ```
     === "响应"
@@ -503,7 +493,6 @@ sequenceDiagram
             "email": "tangentnightydegree@foxmail.com"，
             "op": "rm",
             "type": "minor"
-
         }
         ```
     === "响应"
@@ -537,7 +526,6 @@ sequenceDiagram
             "email": "tangentnightydegree@foxmail.com"，
             "op": "add",
             "type": "minor"
-
         }
         ```
     === "响应"
@@ -717,10 +705,9 @@ sequenceDiagram
     === "请求"
         ```json
         {
-            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
-            "remote_name": "Btlmd",
-            "repo": 1,
-            "project": 1
+            "url": "gitlab.secoder.net",
+            "remote_name": "username",
+            "sessionId": "f4wIl1q03HntE5Mr36MO4WeqfMITWH4Q"
         }
         ```
     === "响应"
@@ -736,7 +723,7 @@ sequenceDiagram
 |参数|类型|说明|
 |-|-|-|
 |remote_name|str|用户在远程仓库中的用户名|
-|repo|str/int|远程仓库id|
+|url|str/int|远程URL|
 |project|str/int|仓库所在项目id|
 
 #### 响应状态

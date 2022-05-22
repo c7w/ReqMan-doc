@@ -6,6 +6,11 @@
 
 # 项目管理接口
 
+!!! warning 
+    不加特殊说明，所有请求都需要有 `sessionId` 字段。
+
+    [权限约定](../ums/index.md#_1)中所提及的状态码在本节不再重复。
+
 ## 提示和说明
 !!! info "成员属性"
     - supermaster：项目管理员
@@ -110,8 +115,6 @@
 |-|-|
 |0|获取项目信息成功|
 
-!!! bug
-    中间某个版本实现时误将avatar放到了data的下面而不是project的下面，后续考虑移除。（示例响应已经移除，但目前dev分支在两个地方都加了项目avatar）
 
 ## 成员管理
 
@@ -323,67 +326,6 @@
 |-|-|-|
 |invitation|str|项目当前的邀请码|
 
-
-### 检查用户是否存在
-<div class="grid cards" markdown>
-- <span>**[ POST ]** &nbsp;&nbsp; /ums/user_exist/</span>
-</div>
-
-用于邀请用户加入项目时的实时反馈。
-
-??? example "示例"
-    === "请求"
-        ```json
-        {
-            "sessionId": "Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74",
-            "project": 1,
-            "indentity": {
-                "type": "email",
-                "key": "admin@cc7w.cf"
-            }
-        }
-        ```
-    === "响应"
-        ```json
-        {
-            "code": 0,
-            "data": {
-                "exist": true,
-                "user": {
-                    "id": 1,
-                    "name": "c7w",
-                    "email": "admin@cc7w.cf",
-                    "avatar": "",
-                    "createdAt": 1648050909.599101,
-                    "email_verified": false
-                },
-                "projects": [
-                    {
-                        "id": 1,
-                        "title": "雷克曼",
-                        "description": "ReqMan",
-                        "createdAt": 1648278867.751802,
-                        "avatar": "",
-                        "role": "supermaster"
-                    }
-                ]
-            }
-        }
-        ```
-
-#### 请求权限 
-项目管理员，系统工程师
-#### 请求参数
-|参数|类型|说明|
-|-|-|-|
-|project|int/str|项目ID|
-|identity.type|str|查询依据:"id", "name", "email"|
-|identity.key|str/int|查询内容，如查询email就传入待查询的email|
-
-#### 响应状态
-!!! danger "This interface is too powerful"
-    前端的伙计们看一下需要示例里的哪些字段，其余的我就移除了。
-
 ## 项目信息配置
 
 ### 上传项目图标
@@ -392,6 +334,7 @@
 </div>
 
 用于项目管理员上传项目图标。
+
 
 ??? example "示例"
     === "请求"
@@ -466,7 +409,7 @@
 - <span>**[ POST ]** &nbsp;&nbsp; /ums/config_regex/</span>
 </div>
 
-配置同步时，以何种规则匹配SR标题，以何种规则匹配 MergeRequest 和 Issue 的关联
+配置以何种规则匹配SR标题，以何种规则匹配 MergeRequest 和 Issue 的关联。
 
 ??? example "示例"
     === "请求"

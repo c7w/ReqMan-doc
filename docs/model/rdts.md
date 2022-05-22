@@ -32,16 +32,20 @@
 |commiter_email|Text|索引|提交者的邮件，最大长度 255 字符|
 |commiter_name|Text|索引|提交者的姓名，最大长度 255 字符|
 |createAt|Float||提交记录的创建时间|
+|commite_date |Float||提交记录最后一次同步的时间|
 |url|Text||提交记录的链接|
 |disabled |Boolean| |是否已删除，默认为False|
 |user_commiter|ForeignKey([User](../ums/#user))||关联提交者对应的本地用户|
+|additions|Integer||本次提交的增加行数|
+|deletions|Integer||本次提交的删除行数|
+
 
 ## 合并请求模型 MergeRequest
 
 |字段|类型|属性|说明|
 |-|-|-|-|
 |id|BigAuto|主键|合并请求 ID|
-|merge_id|Int||合并的 ID|
+|merge_id|Integer||合并的 ID|
 |repo|ForeignKey([Repository](#repository))|索引|合并请求归属的仓库|
 |title |Text||合并请求的名称，最长255字符|
 |description |Text ||合并请求的描述|
@@ -54,7 +58,7 @@
 |reviewedAt|Float||复盘时间，可为空|
 |url|Text||合并请求的链接|
 |disabled |Boolean| |是否已删除，默认为False|
-
+|updated_at|Float| |最后一次同步时间|
 |user_authored|ForeignKey([User](../ums/#user))||关联提出请求者对应的本地用户|
 |user_reviewed|ForeignKey([User](../ums/#user))||关联合并请求者对应的本地用户|
 
@@ -63,7 +67,7 @@
 |字段|类型|属性|说明|
 |-|-|-|-|
 |id|BigAuto|主键||
-|issue_id|Int||议题在相应仓库中的唯一ID|
+|issue_id|Integer||议题在相应仓库中的唯一ID|
 |repo|ForeignKey([Repository](#repository))|索引|议题归属的仓库|
 |title |Text||议题的名称，最长255字符|
 |description |Text ||议题的描述|
@@ -133,6 +137,7 @@
 |info|Text||用于连接远程仓库所需的额外信息，如果网址等，用于实现对不同远程仓库的对接|
 |repo|ForeignKey([Repository](#repository))|索引|表示远程仓库对应的仓库|
 |secret_token|Char|索引，唯一|用于webhook匹配本地仓库，最长255字节|
+|created |Boolean||表示仓库创建后是否已经完成了首次同步|
 
 ## 同步记录模型 Crawllog
 |字段|类型|属性|说明|
@@ -145,9 +150,9 @@
 |request_type|Text||同步的类型：commit, merge, issue; general为尚未开始同步就出错|
 |finished|Boolean||同步是否成功结束：False 表示处理过程中出错，没有处理完|
 |updated|Boolean||本次同步是否对数据库做了修改|
-|is_webhook|Boolean||本次同步是否是webhook发起的|
+|is_webhook|Boolean||本次同步是否是 Webhook 发起的|
 
-## WebHook等待队列模型 PendingWebhookRequests
+## WebHook等待列表模型 PendingWebhookRequests
 |字段|类型|属性|说明|
 |-|-|-|-|
 |remote|ForeignKey([RemoteRepo](#remoterepo))||该WebHook请求对应的RemoteRepo|

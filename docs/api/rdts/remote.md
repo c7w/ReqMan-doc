@@ -5,6 +5,13 @@
 </style>
 # 远程仓库和开发数据
 
+
+
+!!! warning 
+    不加特殊说明，所有请求都需要有 `sessionId` 字段。
+
+    [权限约定](../ums/index.md#_1)中所提及的状态码在本节不再重复。
+
 ## 远程仓库
 
 ### 创建和修改远程仓库
@@ -61,12 +68,43 @@
     这样就定义了新的远程仓库，其类型是 `type_map` 中定义的键名。
 
 #### 响应状态
+
 |状态码|说明|
 |-|-|
 |0|操作成功|
 |1|操作失败，因为项目名称长于255字符|
 |2|操作失败，因为项目描述长于1000字符|
 |3|修改失败，因为这个仓库ID不存在|
+
+
+### Webhook 推送接口
+
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /rdts/webhook/</span>
+</div>
+
+用于接受远程仓库更新的推送。收到推送后会进行验证并立即给出响应；如果验证成功，则将推送消息放入队列串行处理。
+
+#### 请求参数
+
+本请求无需包含 `sessionId` 字段。请求体遵循 GitLab 文档中的规定，在 HTTP Header 中需提供如下参数
+
+|参数|类型|说明|
+|-|-|-|
+|X-Gitlab-Event|str|推送类型|
+|X-Gitlab-Token|str|推送仓库的 secret token|
+
+#### 请求权限
+
+无
+
+#### 响应状态
+
+|状态码|说明|
+|-|-|
+|0|推送成功|
+|1|推送失败，因为仓库不存在或 secret token 无效|
+
 
 
 ### 同步记录查询
@@ -378,83 +416,6 @@
 
 
 
-### 同步记录查询
-<div class="grid cards" markdown>
-- <span>**[ GET ]** &nbsp;&nbsp; /rdts/repo_crawllog/</span>
-</div>
-
-用于查询远程仓库的同步记录。
-
-??? example "示例"
-    === "请求"
-        ```bash
-        curl https://example.com/rdts/repo_crawllog/?sessionId=Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74&repo=1&project=1&page=1
-        ```
-    === "响应"
-        ```json
-        {
-            "code": 0,
-            "data": [
-                {
-                    "id": 124,
-                    "time": 1649840324.738104,
-                    "status": 200,
-                    "message": "",
-                    "request_type": "merge",
-                    "finished": true,
-                    "updated": false
-                },
-                {
-                    "id": 123,
-                    "time": 1649840304.765841,
-                    "status": 200,
-                    "message": "",
-                    "request_type": "commit",
-                    "finished": false,
-                    "updated": false
-                },
-                ...
-            ]
-        }
-        ```
-
-#### 请求权限 
-项目管理员
-
-#### 请求参数
-|参数|类型|说明|
-|-|-|-|
-|project|int/str|项目ID|
-|repo|int/str|仓库ID|
-|page|int/str|记录页码|
-
-#### 响应状态
-|状态码|说明|
-|-|-|
-|0|查询成功|
-|1|查询失败，因为仓库不存在|
-
-#### 响应数据
-响应数据是一个数组，数组各字段如下
-
-|字段|类型|说明|
-|-|-|-|
-|id|int|同步ID|
-|time|float|同步开始时间，以秒计|
-|status|int|同步状态，以远程服务器的HTTP状态码表示|
-|message|int|错误信息，如果同步状态不为200，则记录远程服务器返回的错误信息|
-|request_type|str|同步内容，为 "merge" , "issue" 或 "commit"|
-|finished|bool|表示本次同步的内容是否已经处理完|
-|updated|bool|表示本次同步是否进行了更新，包括对已有记录的增加、修改、删除，不包括已有记录和SR, MR的匹配|
-
-!!! info "同步过程"
-    同步时会先向远程服务器逐页请求数据，然后处理服务器返回的数据
-
-    - 如果逐页请求的过程中出现了一次失败，则记录同步状态和出错信息，本次同步终止
-    - 如果逐页请求成功，则标记同步状态为200，finished=false，开始处理数据
-    - 所有数据处理结束后，finished=true，本次同步结束
-
-
 ## 数据分析
 
 ### 开发过程数据
@@ -471,7 +432,7 @@
         {
             "project": 2,
             "digest": true,
-            "dev_id": [17, 25],
+            "dev_id": [17],
             "limit": 604800,
             "sessionId": "b4RCDE7ovT5IMQrV2JnyC947JN8j8kD8"
         }
@@ -484,9 +445,9 @@
             "data": [
                 {
                     "mr_count": 4,
-                    "commit_count": 19,
-                    "additions": 2500,
-                    "deletions": 709,
+                    "commit_count": 3,
+                    "additions": 27,
+                    "deletions": 9,
                     "issue_count": 4,
                     "issue_times": [
                         522758,
@@ -497,31 +458,18 @@
                     "commit_times": [
                         1650339623,
                         1650343097,
-                        1650343543,
-                        1650347507,
-                        1650347890,
-                        1650371087,
-                        1650371663
-                    ]
-                },
-                {
-                    "mr_count": 5,
-                    "commit_count": 11,
-                    "additions": 2742,
-                    "deletions": 392,
-                    "issue_count": 3,
-                    "issue_times": [
-                        635771,
-                        635800,
-                        150777
+                        1650343543
                     ],
-                    "commit_times": [
-                        1650356448,
-                        1650377940,
-                        1650425209,
-                        1650425628,
-                        1650902311,
-                        1650902956
+                    "commit_lines" :[
+                        10,
+                        17,
+                        9
+                    ]
+                    "mr_times": [
+                        1650339623,
+                        1650343097,
+                        1650343543,
+                        1650343643
                     ]
                 }
             ]
@@ -535,33 +483,45 @@
             "data": {
                 "merges": [
                     {
-                        "id": 4,
-                        "merge_id": 34,
-                        "title": "[SR.003.604.F] Merge: modify password, upload avatar (#34)",
-                        "url": "https://gitlab.secoder.net/undefined/backend/-/merge_requests/34",
-                        "repo": "backend"
+                        "id": 784,
+                        "merge_id": 153,
+                        "title": "[SR.007.142] Exceptions in Issue List (#143)",
+                        "description": "",
+                        "repo": 2,
+                        "state": "merged",
+                        "url": "https://gitlab.secoder.net/undefined/frontend/-/merge_requests/153",
+                        "authoredAt": 1652523915.308,
+                        "reviewedAt": 1652524661.758,
+                        "user_authored": 1,
+                        "user_reviewed": 1
                     }
                 ],
                 "commits": [
                     {
-                        "id": 203,
-                        "hash_id": "8fbe227a8a37a4fe2c41f07a1e2d09c1b3086667",
-                        "message": "[SR.004.605.I] Disabled unfinished modules (#52)\n",
-                        "createdAt": 1649511580.0,
-                        "url": "https://gitlab.secoder.net/undefined/backend/-/commit/8fbe227a8a37a4fe2c41f07a1e2d09c1b3086667",
-                        "additions": 15
-                        "deletions": 46
-                        "repo": "backend"
+                        "id": 162831,
+                        "hash_id": "1295d142505610da63d81aca096c87214df94d9a",
+                        "repo": 5,
+                        "title": "[SR.007.140.I] catch router return fallback (#141)",
+                        "createdAt": 1652502272.0,
+                        "user_committer": 17,
+                        "additions": 86,
+                        "deletions": 79
                     }
                 ],
                 "issues": [
                     {
-                        "id": 1,
-                        "issue_id": 39,
-                        "title": "[SR.003.609] 检修 Schedule Task",
-                        "authoredAt": 1648569415.762,
-                        "closedAt": 1648609209.383,
-                        "repo": "backend"
+                        "id": 5831,
+                        "issue_id": 141,
+                        "repo": 5,
+                        "title": "[SR.007.140] Bugfix: SRList",
+                        "description": "",
+                        "state": "closed",
+                        "authoredAt": 1652496799.741,
+                        "closedAt": 1652517983.375,
+                        "url": "https://gitlab.secoder.net/undefined/frontend/-/issues/141",
+                        "user_assignee": 17,
+                        "user_authored": 17,
+                        "user_closed": 1
                     }
                 ],
 
@@ -570,7 +530,7 @@
         ```
 
 #### 请求权限 
-项目管理员，质保工程师
+项目成员
 
 #### 请求参数
 |参数|类型|说明|
@@ -584,7 +544,7 @@
 |状态码|说明|
 |-|-|
 |0|查询成功|
-|1|查询失败，因为项目中不存在这个工程师|
+|1|查询失败，因为项目中不存在这个用户|
 
 #### 响应数据
 ##### 当请求 `digest=true` 时
@@ -596,16 +556,16 @@
 |issue_times|array\[int\]|每个issue的解决时间，以秒计算|
 
 ##### 当请求 `digest=false` 时
-各字段含义十分明确，详见示例。
+各字段含义较为明确，详见示例。
 
 
 
-### 迭代周期bug情况
+### 迭代周期 bug 情况
 <div class="grid cards" markdown>
 - <span>**[ GET ]** &nbsp;&nbsp; /rdts/iteration_bugs/</span>
 </div>
 
-用于质保工程师查看指定迭代周期的bug情况。
+用于质保工程师查看指定迭代周期的 bug 情况。这里的 bug 指含有 bug 标签的 issue。
 
 ??? example "示例"
     === "请求"
@@ -659,74 +619,239 @@
 |-|-|-|
 |bug_issues|array\[objects\]|该迭代周期中所有被标记为bug的issue的详情，及其关联SR的相关信息|
 
-### 同步记录查询
+## 远程代码
+
+### 查看远程分支
+
 <div class="grid cards" markdown>
-- <span>**[ GET ]** &nbsp;&nbsp; /rdts/repo_crawllog/</span>
+- <span>**[ GET ]** &nbsp;&nbsp; /rdts/forward_branches/</span>
 </div>
 
-用于查询远程仓库的同步记录。
+
+用于从远程仓库请求分支情况。
 
 ??? example "示例"
     === "请求"
         ```bash
-        curl https://example.com/rdts/repo_crawllog/?sessionId=Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74&repo=1&project=1&page=1
+        curl https://example.com/rdts/forward_branches/?project=2&repo=6&sessionId=6gr6q4MAo9l6jJxfl6s5SrK1Ukjx9g1A
         ```
     === "响应"
         ```json
         {
             "code": 0,
-            "data": [
-                {
-                    "id": 124,
-                    "time": 1649840324.738104,
-                    "status": 401,
-                    "message": "401 Unauthorized",
-                    "request_type": "merge",
-                    "finished": false,
-                    "updated": false
-                    "is_webhook": false
-                },
-                {
-                    "id": 123,
-                    "time": 1649840304.765841,
-                    "status": 200,
-                    "message": "",
-                    "request_type": "commit",
-                    "finished": true,
-                    "updated": true,
-                    "is_webhook": true
-                },
-                ...
-            ]
+            "data": {
+                "http_status": 200,
+                "body": [
+                    {
+                        "name": "dev",
+                        "commit": {
+                            "id": "exxxxxxxxxxxxxxxxxxxxxxxxxx",
+                            "short_id": "exxxxxxx",
+                            "created_at": "2022-05-14T10:33:03.000+00:00",
+                            "parent_ids": null,
+                            "title": "[SR.007.907.B] Merge: fix a page num incorrection (#102)",
+                            "message": "[SR.007.907.B] Merge: fix a page num incorrection (#102)",
+                            "author_name": "xxx",
+                            "author_email": "xxx@secoder.net",
+                            "authored_date": "2022-05-14T10:33:03.000+00:00",
+                            "committer_name": "xxx",
+                            "committer_email": "xxx@secoder.net",
+                            "committed_date": "2022-05-14T10:33:03.000+00:00",
+                            "web_url": "https://gitlab.secoder.net/xxxxxxxx"
+                        },
+                        "merged": false,
+                        "protected": false,
+                        "developers_can_push": false,
+                        "developers_can_merge": false,
+                        "can_push": true,
+                        "default": true,
+                        "web_url": "https://gitlab.secoder.net/xxx"
+                    }
+                ]
+            }
         }
         ```
 
 #### 请求权限 
-项目管理员
+项目成员
 
 #### 请求参数
 |参数|类型|说明|
 |-|-|-|
 |project|int/str|项目ID|
 |repo|int/str|仓库ID|
-|page|int/str|记录页码|
 
 #### 响应状态
 |状态码|说明|
 |-|-|
 |0|查询成功|
-|1|查询失败，因为仓库不存在|
+|1|查询失败，因为远程仓库不存在|
+|2|查询失败，因为不支持这种类型的远程仓库|
+|4|查询失败，因为向远程服务器请求超时|
+|5|查询失败，因为向远程服务器请求的过程出现异常|
 
 #### 响应数据
-响应数据是一个数组，数组各字段如下
-
 |字段|类型|说明|
 |-|-|-|
-|id|int|同步ID|
-|time|float|同步开始时间，以秒计|
-|status|int|同步状态，以远程服务器的HTTP状态码表示|
-|message|int|错误信息，如果同步状态不为200，则记录远程服务器返回的错误信息|
-|request_type|str|同步内容，为 "merge" , "issue" 或 "commit"|
-|finished|bool|表示本次同步的内容是否已经处理完|
-|updated|bool|表示本次同步是否进行了更新，包括对已有记录的增加、修改、删除，不包括已有记录和SR, MR的匹配|
-|is_webhook|bool|表明是否是webhook自动推送导致的同步|
+|http_status|int|远程仓库返回的http状态码|
+|body|object|远程仓库返回内容的转发|
+
+
+### 查看远程文件树
+
+<div class="grid cards" markdown>
+- <span>**[ GET ]** &nbsp;&nbsp; /rdts/forward_tree/</span>
+</div>
+
+用于从远程仓库请求指定路径的文件树。
+
+
+??? example "示例"
+    === "请求"
+        ```bash
+        curl https://example.com/rdts/forward_tree/?project=2&repo=6&ref=dev&path=/&sessionId=6gr6q4MAo9l6jJxfl6s5SrK1Ukjx9g1A
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "http_status": 200,
+                "body": [
+                    {
+                        "id": "b9c5210aad2bda5d3b185e84d04e3be217b856e1",
+                        "name": "backend",
+                        "type": "tree",
+                        "path": "backend",
+                        "mode": "040000"
+                    },
+                    {
+                        "id": "fa0c2d4c16b7e6057346c3606a7186a05b561276",
+                        "name": "rdts",
+                        "type": "tree",
+                        "path": "rdts",
+                        "mode": "040000"
+                    }
+                ]
+            }
+        }
+        ```
+
+#### 请求权限 
+项目成员
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|repo|int/str|仓库ID|
+|path|str|要查找的地址|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|查询成功|
+|1|查询失败，因为远程仓库不存在|
+|2|查询失败，因为不支持这种类型的远程仓库|
+|4|查询失败，因为向远程服务器请求超时|
+|5|查询失败，因为向远程服务器请求的过程出现异常|
+
+#### 响应数据
+|字段|类型|说明|
+|-|-|-|
+|http_status|int|远程仓库返回的http状态码|
+|body|object|远程仓库返回内容的转发|
+
+### 查看远程代码与SR关联
+
+<div class="grid cards" markdown>
+- <span>**[ GET ]** &nbsp;&nbsp; /rdts/forward_code_sr/</span>
+</div>
+
+
+用于查看指定文件中代码块与相应 SR 和 commit 的关联。
+
+
+??? example "示例"
+    === "请求"
+        ```bash
+        curl https://example.com/rdts/forward_code_sr/?project=2&repo=3&ref=dev&path=pytest.ini&sessionId=RL0Waf4UdvMlXf48Gfvt415aMh4mUOSb
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "relationship": [
+                    {
+                        "local_commit": 1119,
+                        "remote_commit": null,
+                        "lines": [
+                            "[pytest]",
+                            "DJANGO_SETTINGS_MODULE = backend.settings",
+                            "python_files = tests.py test*.py *_tests.py"
+                        ],
+                        "SR": 125
+                    }
+                ],
+                "SR": {
+                    "125": {
+                        "id": 125,
+                        "project": 2,
+                        "title": "SR.002.003",
+                        "description": "配置后端 coverage 检测与 SonarQube",
+                        "priority": 7,
+                        "rank": 1,
+                        "state": "Done",
+                        "createdBy": 1,
+                        "createdAt": 1650993749.159988,
+                        "disabled": false
+                    }
+                },
+                "Commits": {
+                    "xxxxxxxxxxxxxx": {
+                        "id": 1119,
+                        "hash_id": "xxxxxxxxxxxxxx",
+                        "repo": 1,
+                        "title": "[SR.002.003] Finish sub-branch testing",
+                        "message": "[SR.002.003] Finish sub-branch testing\n",
+                        "commiter_email": "xxxxxxxxxxxxxx@secoder.net",
+                        "commiter_name": "xxxxxxxxxxxxxx",
+                        "createdAt": 1647399192.0,
+                        "url": "https://gitlab.secoder.net/xxxxxxxxxxxxxx",
+                        "commite_date": 0.0,
+                        "user_committer": 1,
+                        "additions": 3,
+                        "deletions": 14
+                    }
+                }
+            }
+        }
+        ```
+
+#### 请求权限 
+项目成员
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|repo|int/str|仓库ID|
+|path|str|要查找文件的地址|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|查询成功|
+|1|查询失败，因为远程仓库不存在|
+|2|查询失败，因为不支持这种类型的远程仓库|
+|4|查询失败，因为向远程服务器请求超时|
+|5|查询失败，因为向远程服务器请求的过程出现异常|
+
+#### 响应数据
+|字段|类型|说明|
+|-|-|-|
+|relationship|array|代码块及从代码块到 SR 和 commit 的映射关系|
+|SR|array|代码块中涉及的 SR 信息|
+|Commits|array|代码块中涉及的 commit 信息|
+
