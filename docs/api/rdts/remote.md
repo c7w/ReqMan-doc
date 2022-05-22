@@ -693,7 +693,7 @@
 #### 响应数据
 |字段|类型|说明|
 |-|-|-|
-|http_status|int|远程仓库返回的http状态码|
+|http_status|int|远程仓库返回的HTTP状态码|
 |body|object|远程仓库返回内容的转发|
 
 
@@ -759,7 +759,7 @@
 #### 响应数据
 |字段|类型|说明|
 |-|-|-|
-|http_status|int|远程仓库返回的http状态码|
+|http_status|int|远程仓库返回的HTTP状态码|
 |body|object|远程仓库返回内容的转发|
 
 ### 查看远程代码与SR关联
@@ -852,6 +852,6 @@
 |字段|类型|说明|
 |-|-|-|
 |relationship|array|代码块及从代码块到 SR 和 commit 的映射关系|
-|SR|array|代码块中涉及的 SR 信息|
-|Commits|array|代码块中涉及的 commit 信息|
+|SR|object|代码块中涉及的 SR 信息|
+|Commits|obejct|代码块中涉及的 commit 信息|
 
