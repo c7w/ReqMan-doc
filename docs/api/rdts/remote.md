@@ -6,6 +6,7 @@
 # 远程仓库和开发数据
 
 
+
 !!! warning 
     不加特殊说明，所有请求都需要有 `sessionId` 字段。
 
@@ -384,83 +385,6 @@
 
 
 
-### 同步记录查询
-<div class="grid cards" markdown>
-- <span>**[ GET ]** &nbsp;&nbsp; /rdts/repo_crawllog/</span>
-</div>
-
-用于查询远程仓库的同步记录。
-
-??? example "示例"
-    === "请求"
-        ```bash
-        curl https://example.com/rdts/repo_crawllog/?sessionId=Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74&repo=1&project=1&page=1
-        ```
-    === "响应"
-        ```json
-        {
-            "code": 0,
-            "data": [
-                {
-                    "id": 124,
-                    "time": 1649840324.738104,
-                    "status": 200,
-                    "message": "",
-                    "request_type": "merge",
-                    "finished": true,
-                    "updated": false
-                },
-                {
-                    "id": 123,
-                    "time": 1649840304.765841,
-                    "status": 200,
-                    "message": "",
-                    "request_type": "commit",
-                    "finished": false,
-                    "updated": false
-                },
-                ...
-            ]
-        }
-        ```
-
-#### 请求权限 
-项目管理员
-
-#### 请求参数
-|参数|类型|说明|
-|-|-|-|
-|project|int/str|项目ID|
-|repo|int/str|仓库ID|
-|page|int/str|记录页码|
-
-#### 响应状态
-|状态码|说明|
-|-|-|
-|0|查询成功|
-|1|查询失败，因为仓库不存在|
-
-#### 响应数据
-响应数据是一个数组，数组各字段如下
-
-|字段|类型|说明|
-|-|-|-|
-|id|int|同步ID|
-|time|float|同步开始时间，以秒计|
-|status|int|同步状态，以远程服务器的HTTP状态码表示|
-|message|int|错误信息，如果同步状态不为200，则记录远程服务器返回的错误信息|
-|request_type|str|同步内容，为 "merge" , "issue" 或 "commit"|
-|finished|bool|表示本次同步的内容是否已经处理完|
-|updated|bool|表示本次同步是否进行了更新，包括对已有记录的增加、修改、删除，不包括已有记录和SR, MR的匹配|
-
-!!! info "同步过程"
-    同步时会先向远程服务器逐页请求数据，然后处理服务器返回的数据
-
-    - 如果逐页请求的过程中出现了一次失败，则记录同步状态和出错信息，本次同步终止
-    - 如果逐页请求成功，则标记同步状态为200，finished=false，开始处理数据
-    - 所有数据处理结束后，finished=true，本次同步结束
-
-
 ## 数据分析
 
 ### 开发过程数据
@@ -664,75 +588,3 @@
 |字段|类型|说明|
 |-|-|-|
 |bug_issues|array\[objects\]|该迭代周期中所有被标记为bug的issue的详情，及其关联SR的相关信息|
-
-### 同步记录查询
-<div class="grid cards" markdown>
-- <span>**[ GET ]** &nbsp;&nbsp; /rdts/repo_crawllog/</span>
-</div>
-
-用于查询远程仓库的同步记录。
-
-??? example "示例"
-    === "请求"
-        ```bash
-        curl https://example.com/rdts/repo_crawllog/?sessionId=Rd8Gs0jw0jdbUeJzf7EIBwkwr7aYit74&repo=1&project=1&page=1
-        ```
-    === "响应"
-        ```json
-        {
-            "code": 0,
-            "data": [
-                {
-                    "id": 124,
-                    "time": 1649840324.738104,
-                    "status": 401,
-                    "message": "401 Unauthorized",
-                    "request_type": "merge",
-                    "finished": false,
-                    "updated": false
-                    "is_webhook": false
-                },
-                {
-                    "id": 123,
-                    "time": 1649840304.765841,
-                    "status": 200,
-                    "message": "",
-                    "request_type": "commit",
-                    "finished": true,
-                    "updated": true,
-                    "is_webhook": true
-                },
-                ...
-            ]
-        }
-        ```
-
-#### 请求权限 
-项目管理员
-
-#### 请求参数
-|参数|类型|说明|
-|-|-|-|
-|project|int/str|项目ID|
-|repo|int/str|仓库ID|
-|page|int/str|记录页码|
-
-#### 响应状态
-|状态码|说明|
-|-|-|
-|0|查询成功|
-|1|查询失败，因为仓库不存在|
-
-#### 响应数据
-响应数据是一个数组，数组各字段如下
-
-|字段|类型|说明|
-|-|-|-|
-|id|int|同步ID|
-|time|float|同步开始时间，以秒计|
-|status|int|同步状态，以远程服务器的HTTP状态码表示|
-|message|int|错误信息，如果同步状态不为200，则记录远程服务器返回的错误信息|
-|request_type|str|同步内容，为 "merge" , "issue" 或 "commit"|
-|finished|bool|表示本次同步的内容是否已经处理完|
-|updated|bool|表示本次同步是否进行了更新，包括对已有记录的增加、修改、删除，不包括已有记录和SR, MR的匹配|
-|is_webhook|bool|表明是否是webhook自动推送导致的同步|
