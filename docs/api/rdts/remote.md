@@ -76,6 +76,15 @@
 |3|修改失败，因为这个仓库ID不存在|
 
 
+### Webhook 推送接口
+
+<div class="grid cards" markdown>
+- <span>**[ POST ]** &nbsp;&nbsp; /rdts/webhook/</span>
+</div>
+
+
+用于接受远程仓库更新的推送。
+
 ### 同步记录查询
 <div class="grid cards" markdown>
 - <span>**[ GET ]** &nbsp;&nbsp; /rdts/repo_crawllog/</span>
@@ -588,3 +597,225 @@
 |字段|类型|说明|
 |-|-|-|
 |bug_issues|array\[objects\]|该迭代周期中所有被标记为bug的issue的详情，及其关联SR的相关信息|
+
+## 远程代码
+
+### 查看远程分支
+
+
+用于从远程仓库请求分支情况。
+
+??? example "示例"
+    === "请求"
+        ```bash
+        curl https://example.com/rdts/forward_branches/?project=2&repo=6&sessionId=6gr6q4MAo9l6jJxfl6s5SrK1Ukjx9g1A
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "http_status": 200,
+                "body": [
+                    {
+                        "name": "dev",
+                        "commit": {
+                            "id": "exxxxxxxxxxxxxxxxxxxxxxxxxx",
+                            "short_id": "exxxxxxx",
+                            "created_at": "2022-05-14T10:33:03.000+00:00",
+                            "parent_ids": null,
+                            "title": "[SR.007.907.B] Merge: fix a page num incorrection (#102)",
+                            "message": "[SR.007.907.B] Merge: fix a page num incorrection (#102)",
+                            "author_name": "xxx",
+                            "author_email": "xxx@secoder.net",
+                            "authored_date": "2022-05-14T10:33:03.000+00:00",
+                            "committer_name": "xxx",
+                            "committer_email": "xxx@secoder.net",
+                            "committed_date": "2022-05-14T10:33:03.000+00:00",
+                            "web_url": "https://gitlab.secoder.net/xxxxxxxx"
+                        },
+                        "merged": false,
+                        "protected": false,
+                        "developers_can_push": false,
+                        "developers_can_merge": false,
+                        "can_push": true,
+                        "default": true,
+                        "web_url": "https://gitlab.secoder.net/xxx"
+                    }
+                ]
+            }
+        }
+        ```
+
+#### 请求权限 
+项目成员
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|repo|int/str|仓库ID|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|查询成功|
+|1|查询失败，因为远程仓库不存在|
+|2|查询失败，因为不支持这种类型的远程仓库|
+|4|查询失败，因为向远程服务器请求超时|
+|5|查询失败，因为向远程服务器请求的过程出现异常|
+
+#### 响应数据
+|字段|类型|说明|
+|-|-|-|
+|http_status|int|远程仓库返回的http状态码|
+|body|object|远程仓库返回内容的转发|
+
+
+### 查看远程文件树
+
+
+用于从远程仓库请求分支情况，以查看代码。
+
+??? example "示例"
+    === "请求"
+        ```bash
+        curl https://example.com/rdts/forward_tree/?project=2&repo=6&ref=dev&path=/&sessionId=6gr6q4MAo9l6jJxfl6s5SrK1Ukjx9g1A
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "http_status": 200,
+                "body": [
+                    {
+                        "id": "b9c5210aad2bda5d3b185e84d04e3be217b856e1",
+                        "name": "backend",
+                        "type": "tree",
+                        "path": "backend",
+                        "mode": "040000"
+                    },
+                    {
+                        "id": "fa0c2d4c16b7e6057346c3606a7186a05b561276",
+                        "name": "rdts",
+                        "type": "tree",
+                        "path": "rdts",
+                        "mode": "040000"
+                    }
+                ]
+            }
+        }
+        ```
+
+#### 请求权限 
+项目成员
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|repo|int/str|仓库ID|
+|path|str|要查找的地址|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|查询成功|
+|1|查询失败，因为远程仓库不存在|
+|2|查询失败，因为不支持这种类型的远程仓库|
+|4|查询失败，因为向远程服务器请求超时|
+|5|查询失败，因为向远程服务器请求的过程出现异常|
+
+#### 响应数据
+|字段|类型|说明|
+|-|-|-|
+|http_status|int|远程仓库返回的http状态码|
+|body|object|远程仓库返回内容的转发|
+
+### 查看远程代码与SR关联
+
+用于查看指定文件中代码块与相应 SR 和 commit 的关联。
+
+??? example "示例"
+    === "请求"
+        ```bash
+        curl https://example.com/rdts/forward_code_sr/?project=2&repo=3&ref=dev&path=pytest.ini&sessionId=RL0Waf4UdvMlXf48Gfvt415aMh4mUOSb
+        ```
+    === "响应"
+        ```json
+        {
+            "code": 0,
+            "data": {
+                "relationship": [
+                    {
+                        "local_commit": 1119,
+                        "remote_commit": null,
+                        "lines": [
+                            "[pytest]",
+                            "DJANGO_SETTINGS_MODULE = backend.settings",
+                            "python_files = tests.py test*.py *_tests.py"
+                        ],
+                        "SR": 125
+                    }
+                ],
+                "SR": {
+                    "125": {
+                        "id": 125,
+                        "project": 2,
+                        "title": "SR.002.003",
+                        "description": "配置后端 coverage 检测与 SonarQube",
+                        "priority": 7,
+                        "rank": 1,
+                        "state": "Done",
+                        "createdBy": 1,
+                        "createdAt": 1650993749.159988,
+                        "disabled": false
+                    }
+                },
+                "Commits": {
+                    "xxxxxxxxxxxxxx": {
+                        "id": 1119,
+                        "hash_id": "xxxxxxxxxxxxxx",
+                        "repo": 1,
+                        "title": "[SR.002.003] Finish sub-branch testing",
+                        "message": "[SR.002.003] Finish sub-branch testing\n",
+                        "commiter_email": "xxxxxxxxxxxxxx@secoder.net",
+                        "commiter_name": "xxxxxxxxxxxxxx",
+                        "createdAt": 1647399192.0,
+                        "url": "https://gitlab.secoder.net/xxxxxxxxxxxxxx",
+                        "commite_date": 0.0,
+                        "user_committer": 1,
+                        "additions": 3,
+                        "deletions": 14
+                    }
+                }
+            }
+        }
+        ```
+
+#### 请求权限 
+项目成员
+
+#### 请求参数
+|参数|类型|说明|
+|-|-|-|
+|project|int/str|项目ID|
+|repo|int/str|仓库ID|
+|path|str|要查找文件的地址|
+
+#### 响应状态
+|状态码|说明|
+|-|-|
+|0|查询成功|
+|1|查询失败，因为远程仓库不存在|
+|2|查询失败，因为不支持这种类型的远程仓库|
+|4|查询失败，因为向远程服务器请求超时|
+|5|查询失败，因为向远程服务器请求的过程出现异常|
+
+#### 响应数据
+|字段|类型|说明|
+|-|-|-|
+|http_status|int|远程仓库返回的http状态码|
+|body|object|远程仓库返回内容的转发|
+
