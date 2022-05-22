@@ -213,9 +213,6 @@
 - UMS中的账户信息，如用户名，邮箱，头像等等
 - RMS中的任务信息，如计划表。
 
-!!! todo
-    此接口尚未完全实现
-
 ??? example "示例"
     === "请求"
         ```bash 
@@ -423,7 +420,6 @@ sequenceDiagram
             "email": "joshua@btlmd.com"，
             "op": "modify",
             "type": "major"
-
         }
         ```
     === "响应"
@@ -462,7 +458,6 @@ sequenceDiagram
             "email": "joshua@btlmd.com"，
             "op": "verify",
             "type": "major"
-
         }
         ```
     === "响应"
@@ -498,7 +493,6 @@ sequenceDiagram
             "email": "tangentnightydegree@foxmail.com"，
             "op": "rm",
             "type": "minor"
-
         }
         ```
     === "响应"
@@ -532,7 +526,6 @@ sequenceDiagram
             "email": "tangentnightydegree@foxmail.com"，
             "op": "add",
             "type": "minor"
-
         }
         ```
     === "响应"

@@ -544,7 +544,7 @@
 |状态码|说明|
 |-|-|
 |0|查询成功|
-|1|查询失败，因为项目中不存在这个工程师|
+|1|查询失败，因为项目中不存在这个用户|
 
 #### 响应数据
 ##### 当请求 `digest=true` 时
@@ -556,16 +556,16 @@
 |issue_times|array\[int\]|每个issue的解决时间，以秒计算|
 
 ##### 当请求 `digest=false` 时
-各字段含义十分明确，详见示例。
+各字段含义较为明确，详见示例。
 
 
 
-### 迭代周期bug情况
+### 迭代周期 bug 情况
 <div class="grid cards" markdown>
 - <span>**[ GET ]** &nbsp;&nbsp; /rdts/iteration_bugs/</span>
 </div>
 
-用于质保工程师查看指定迭代周期的bug情况。
+用于质保工程师查看指定迭代周期的 bug 情况。这里的 bug 指含有 bug 标签的 issue。
 
 ??? example "示例"
     === "请求"
@@ -622,6 +622,10 @@
 ## 远程代码
 
 ### 查看远程分支
+
+<div class="grid cards" markdown>
+- <span>**[ GET ]** &nbsp;&nbsp; /rdts/forward_branches/</span>
+</div>
 
 
 用于从远程仓库请求分支情况。
@@ -695,8 +699,12 @@
 
 ### 查看远程文件树
 
+<div class="grid cards" markdown>
+- <span>**[ GET ]** &nbsp;&nbsp; /rdts/forward_tree/</span>
+</div>
 
-用于从远程仓库请求分支情况，以查看代码。
+用于从远程仓库请求指定路径的文件树。
+
 
 ??? example "示例"
     === "请求"
@@ -756,7 +764,13 @@
 
 ### 查看远程代码与SR关联
 
+<div class="grid cards" markdown>
+- <span>**[ GET ]** &nbsp;&nbsp; /rdts/forward_code_sr/</span>
+</div>
+
+
 用于查看指定文件中代码块与相应 SR 和 commit 的关联。
+
 
 ??? example "示例"
     === "请求"

@@ -3,7 +3,7 @@
         display: none;
     }
 </style>
-# RDTS模型操作接口
+# RDTS 基础模块接口
 
 !!! warning 
     不加特殊说明，所有请求都需要有 `sessionId` 字段。
@@ -74,7 +74,7 @@
 ### 创建 Repository
 ### 修改 Repository
 !!! info "更新提示"
-    考虑到爬虫中使用的远程仓库模型，对创建和修改Repository的接口进行了重构，现移至了 （TO BE ADDED）
+    考虑到爬虫中使用的远程仓库模型，对创建和修改Repository的接口进行了重构，现移至了[创建和修改远程仓库](remote.md#_3)
 <!--
 #### 请求参数
 

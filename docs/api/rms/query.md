@@ -306,8 +306,10 @@
 #### 响应数据
 |字段|类型|说明|
 |-|-|-|
-|commit/issue/mr|array\[objects\]|与SR关联的commit/issue(bug)/mr|
-其余内容是SR基本信息，含义详见模型。
+|commit/issue/mr|array\[objects\]|与SR关联的 commit / issue /mr |
+
+
+其余部分是SR基本信息。
 
 
 
@@ -396,7 +398,7 @@
 
 查询用户在项目中负责的未开始、开发中和测试中的SR，用于前端展示 Dashboard 。被查询的用户由登录的 sessionId 确定。
 
-对于每个类型的SR，优先级高的前；相同优先级的，后创建的SR在前。前端课可以
+对于每个类型的SR，优先级高的在前；相同优先级的，后创建的SR在前。
 
 ??? example "示例"
     === "请求"
@@ -448,7 +450,7 @@
 |参数|类型|说明|
 |-|-|-|
 |project|int/str|项目ID|
-|limit|int/str|每种类型SR的返回数量|
+|limit|int/str|每种类型SR的返回数量上限|
 
 #### 响应状态
 |状态码|说明|

@@ -409,7 +409,7 @@
 - <span>**[ POST ]** &nbsp;&nbsp; /ums/config_regex/</span>
 </div>
 
-配置同步时，以何种规则匹配SR标题，以何种规则匹配 MergeRequest 和 Issue 的关联
+配置以何种规则匹配SR标题，以何种规则匹配 MergeRequest 和 Issue 的关联。
 
 ??? example "示例"
     === "请求"

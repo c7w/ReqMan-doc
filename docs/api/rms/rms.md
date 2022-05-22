@@ -4,7 +4,7 @@
     }
 </style>
 
-# RMS 模块模型接口
+# RMS 基础模块接口
 
 !!! warning 
     不加特殊说明，所有请求都需要有 `sessionId` 字段。
